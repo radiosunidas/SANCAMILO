@@ -58,10 +58,6 @@
     @media(min-width:768px){.contenedor-iframe{height:340px}}
     .iframe-radio{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
 
-    /* ✅ BOTÓN INSTALAR MUY RESALTANTE */
-    .btn-instalar-principal{margin-top:15px;width:100%;background:linear-gradient(135deg,#ff0066,#ff3385);color:#fff;padding:12px 14px;border:none;border-radius:30px;font-family:'Orbitron',sans-serif;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:1.1rem;transition:0.2s;box-shadow:0 0 20px rgba(255,0,102,0.6)}
-    .btn-instalar-principal:hover{transform:scale(1.03);box-shadow:0 0 30px rgba(255,0,102,0.8)}
-
     .yape-arriba-chat{margin-bottom:12px;padding:12px;background:rgba(255,204,102,0.08);border-radius:12px;border:2px solid var(--dorado);text-align:center;box-shadow:0 0 12px rgba(255,204,102,0.2)}
     .tit-yape{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--dorado);font-weight:700;margin-bottom:6px;font-size:0.9rem;font-family:'Orbitron',sans-serif}
     .grupo-aportes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
@@ -97,10 +93,27 @@
 
     footer{position:fixed;bottom:0;left:0;width:100%;background:rgba(5,5,5,0.95);border-top:2px solid var(--cyan-neon);padding:7px;text-align:center;font-size:0.75rem;color:var(--texto-claro);font-family:'Orbitron',sans-serif}
 
-    /* ✅ BANNER PWA IGUAL AL EJEMPLO */
-    #pwa-banner{position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#ffcc66;padding:12px 20px;text-align:center;font-family:'Orbitron',sans-serif;font-size:0.95em;box-shadow:0 -2px 15px rgba(0,243,255,0.4);z-index:9999;display:none;flex-direction:column;gap:8px;}
-    #pwa-banner button{background:linear-gradient(135deg,#ff0066,#ff3385);color:white;border:none;padding:6px 16px;border-radius:20px;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;box-shadow:0 0 8px rgba(255,0,102,0.6);margin-top:4px;}
-    #pwa-banner .btn-cerrar{background:transparent;color:#aaa;border:none;font-size:0.85em;cursor:pointer;margin-top:4px;}
+    /* ✅ BANNER EXACTO IGUAL A LA IMAGEN QUE ME MANDASTE */
+    #pwa-banner{
+        position:fixed;bottom:0;left:0;width:100%;
+        background:#000514;color:#ffcc66;
+        padding:20px 15px;text-align:center;
+        font-family:'Orbitron',sans-serif;z-index:9999;
+        display:none;flex-direction:column;gap:20px;
+        border-top:2px solid #00ccff;
+    }
+    #pwa-install-btn{
+        background:#ff0040;color:#fff;border:none;
+        padding:14px 30px;border-radius:50px;
+        font-family:'Orbitron',sans-serif;font-size:1.3rem;
+        font-weight:bold;cursor:pointer;
+        box-shadow:0 0 15px rgba(255,0,64,0.7);
+        display:flex;align-items:center;justify-content:center;gap:8px;
+    }
+    #pwa-close-banner{
+        background:transparent;color:#999;border:none;
+        font-size:1.1rem;cursor:pointer;
+    }
     </style>
 </head>
 <body>
@@ -131,10 +144,6 @@
         <div class="contenedor-iframe">
             <iframe class="iframe-radio" src="https://radiosunidas.github.io/eco/" allow="autoplay" allowfullscreen loading="lazy"></iframe>
         </div>
-
-        <button class="btn-instalar-principal" id="btnInstalarPrincipal">
-            <i class="fa-solid fa-download"></i> ➕ INSTALAR LA RADIO AHORA
-        </button>
     </div>
 
     <div class="columna-chat">
@@ -179,10 +188,13 @@
 
 <footer>© 2026 RADIOS UNIDAS PARA EL MUNDO</footer>
 
+<!-- ✅ BANNER EXACTO IGUAL A TU EJEMPLO -->
 <div id="pwa-banner">
-    <div>¿Quieres tener la radio como aplicación en tu celular Android?</div>
-    <button id="btnInstalarBanner">✅ SÍ, INSTALAR AHORA</button>
-    <button class="btn-cerrar" id="btnCerrarBanner">Cerrar por ahora</button>
+    <div>¿Te gusta RADIOS UNIDAS? ¡Instálala como app en tu celular!</div>
+    <button id="pwa-install-btn">
+        <span style="font-size:1.5rem;">+</span> Instalar App
+    </button>
+    <button id="pwa-close-banner">Cerrar</button>
 </div>
 
 <script>
@@ -195,7 +207,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// LÓGICA PWA EXCLUSIVA PARA ANDROID
+// ✅ LÓGICA PARA QUE APAREZCA EL BANNER IGUAL AL EJEMPLO
 let instalacionPendiente = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
@@ -203,21 +215,22 @@ window.addEventListener('beforeinstallprompt', (e) => {
   document.getElementById('pwa-banner').style.display = 'flex';
 });
 
-function iniciarInstalacion(){
-  if(!instalacionPendiente){
-    alert('📱 Usa el menú ⋮ del navegador → Instalar aplicación');
+document.getElementById('pwa-install-btn').addEventListener('click', async () => {
+  if (!instalacionPendiente) {
+    alert('📱 Usa el menú ⋮ → Instalar aplicación');
     return;
   }
   instalacionPendiente.prompt();
-  instalacionPendiente.userChoice.then(res => {
-    if(res.outcome === 'accepted') document.getElementById('pwa-banner').style.display = 'none';
-    instalacionPendiente = null;
-  });
-}
+  const res = await instalacionPendiente.userChoice;
+  if (res.outcome === 'accepted') {
+    document.getElementById('pwa-banner').style.display = 'none';
+  }
+  instalacionPendiente = null;
+});
 
-document.getElementById('btnInstalarPrincipal').onclick = iniciarInstalacion;
-document.getElementById('btnInstalarBanner').onclick = iniciarInstalacion;
-document.getElementById('btnCerrarBanner').onclick = () => document.getElementById('pwa-banner').style.display = 'none';
+document.getElementById('pwa-close-banner').onclick = () => {
+  document.getElementById('pwa-banner').style.display = 'none';
+};
 
 // MENÚ, HORA, CONTADOR, YAPE, CHAT
 document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
