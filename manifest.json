@@ -6,8 +6,8 @@
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#53012e",
-  "orientation": "portrait-primary",
-  "scope": "/",
+  "orientation": "portrait",
+  "scope": "https://radioecosesiente.blogspot.com/",
   "lang": "es-PE",
   "icons": [
     {
