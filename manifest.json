@@ -1,7 +1,7 @@
 {
   "name": "RADIOS UNIDAS PARA EL MUNDO",
   "short_name": "RADIOS UNIDAS",
-  "description": "Transmisión 24/7 - Eco Radio Se Siente desde Sicuani para todo el Perú y el mundo.",
+  "description": "Transmisión 24/7 en vivo desde Sicuani - Eco Radio Se Siente",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#050505",
