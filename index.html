@@ -9,9 +9,8 @@
     <meta name="robots" content="index, follow">
     <meta name="format-detection" content="telephone=no">
 
-    <title>RADIOS UNIDAS PARA EL MUNDO – Eco Radio Se Siente</title>
+    <title>RADIOS UNIDAS PARA EL MUNDO</title>
 
-    <!-- ✅ MANIFEST Y CONFIGURACIÓN PWA COMPLETA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#53012e">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -100,9 +99,6 @@
     .barra-chat button{background:var(--activo);color:#000;border:none;padding:0 10px;border-radius:25px;font-weight:700;cursor:pointer;font-size:0.85rem}
 
     footer{position:fixed;bottom:0;left:0;width:100%;background:rgba(5,5,5,0.95);border-top:2px solid var(--cyan-neon);padding:7px;text-align:center;font-size:0.75rem;color:var(--texto-claro);font-family:'Orbitron',sans-serif}
-
-    /* === BANNER PWA FORZADO === */
-    #pwa-banner{position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#ffcc66;padding:15px;text-align:center;font-family:'Orbitron',sans-serif;z-index:9999;display:none;flex-direction:column;gap:10px;box-shadow:0 -3px 15px rgba(0,243,255,0.4)}
     </style>
 </head>
 <body>
@@ -179,30 +175,25 @@
     </a>
 </div>
 
-<footer>© 2026 RADIOS UNIDAS PARA EL MUNDO – Eco Radio Se Siente</footer>
+<footer>© 2026 RADIOS UNIDAS PARA EL MUNDO</footer>
 
-<!-- ✅ BANNER DE INSTALACIÓN -->
-<div id="pwa-banner">
-    <strong>📻 ¿Quieres tener la radio como aplicación?</strong>
-    <button id="pwa-install-btn" style="background:#ffcc66;color:#000;border:none;padding:8px 20px;border-radius:25px;font-weight:bold;cursor:pointer;margin-top:8px;">INSTALAR AHORA</button>
-    <button onclick="document.getElementById('pwa-banner').style.display='none'" style="background:transparent;color:#aaa;border:none;cursor:pointer;margin-top:4px;">Cerrar</button>
+<div id="pwa-banner" style="position:fixed;bottom:0;left:0;width:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#ffcc66;padding:12px 20px;text-align:center;font-family:'Orbitron',sans-serif;font-size:0.95em;box-shadow:0 -2px 10px rgba(0,0,0,0.5);z-index:9999;display:none;flex-direction:column;gap:8px;">
+    <div>¿Te gusta RADIOS UNIDAS? ¡Instálala como app en tu celular!</div>
+    <button id="pwa-install-btn" style="background:linear-gradient(135deg,#ffcc66,#e6b040);color:#000;border:none;padding:6px 16px;border-radius:20px;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;box-shadow:0 0 8px rgba(255,204,102,0.6);margin-top:4px;">➕ Instalar App</button>
+    <button id="pwa-close-banner" style="background:transparent;color:#aaa;border:none;font-size:0.85em;cursor:pointer;margin-top:4px;">Cerrar</button>
 </div>
 
 <script>
-// ✅ REGISTRO DEL SERVICE WORKER (OBLIGATORIO)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('✅ SW REGISTRADO:', reg.scope))
+      .then(reg => console.log('✅ SW REGISTRADO'))
       .catch(err => console.log('❌ ERROR SW:', err));
   });
 }
 
-// ✅ LÓGICA DE INSTALACIÓN FORZADA
 let instalacionPendiente = null;
-
 window.addEventListener('beforeinstallprompt', (e) => {
-  console.log('✅ NAVEGADOR DETECTÓ LA PWA');
   e.preventDefault();
   instalacionPendiente = e;
   document.getElementById('pwa-banner').style.display = 'flex';
@@ -212,19 +203,20 @@ document.getElementById('pwa-install-btn').addEventListener('click', async () =>
   if (!instalacionPendiente) {
     const esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
     alert(esIOS 
-      ? '📱 EN IPHONE (SIEMPRE MANUAL):\n1. Usa Safari\n2. Toca el ícono Compartir ⤴️\n3. Elige "Agregar a pantalla de inicio"' 
-      : '📱 Si no sale automático:\n1. Toca los 3 puntitos ⋮\n2. Busca "Instalar aplicación"');
+      ? '📱 EN IPHONE:\n1. Usa Safari\n2. Toca Compartir ⤴️\n3. Agregar a pantalla de inicio' 
+      : '📱 Toca los 3 puntitos ⋮ → Instalar aplicación');
     return;
   }
   instalacionPendiente.prompt();
-  const resultado = await instalacionPendiente.userChoice;
-  if (resultado.outcome === 'accepted') {
-    document.getElementById('pwa-banner').style.display = 'none';
-  }
+  const res = await instalacionPendiente.userChoice;
+  if (res.outcome === 'accepted') document.getElementById('pwa-banner').style.display = 'none';
   instalacionPendiente = null;
 });
 
-// ✅ MENÚ, HORA, CONTADOR, CHAT, YAPE
+document.getElementById('pwa-close-banner').onclick = () => {
+  document.getElementById('pwa-banner').style.display = 'none';
+};
+
 document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
 document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
 
@@ -248,14 +240,10 @@ function enviar(){const n=document.getElementById('miNom').value.trim()||'Invita
 document.getElementById('miMsj').addEventListener('keydown',e=>{if(e.key==='Enter')enviar();});
 window.onload=cargar;
 
-// ✅ AVISO AUTOMÁTICO PARA IPHONE SI NO SE DETECTA EL BOTÓN
 setTimeout(() => {
-  if(!instalacionPendiente){
-    const esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-    if(esIOS){
-      document.getElementById('pwa-banner').innerHTML = `<div>📱 Para instalar en iPhone:<br>Abre en Safari → Toca Compartir ⤴️ → Agregar a pantalla de inicio</div><button onclick="this.parentElement.style.display='none'" style="background:#ffcc66;color:#000;border:none;padding:8px 20px;border-radius:25px;font-weight:bold;cursor:pointer;margin-top:8px;">ENTENDIDO</button>`;
-      document.getElementById('pwa-banner').style.display='flex';
-    }
+  if(!instalacionPendiente && /iPhone|iPad|iPod/.test(navigator.userAgent)){
+    document.getElementById('pwa-banner').innerHTML = `<div>📱 Para instalar en iPhone:<br>Abre en Safari → Compartir ⤴️ → Agregar a inicio</div><button onclick="this.parentElement.style.display='none'" style="background:linear-gradient(135deg,#ffcc66,#e6b040);color:#000;border:none;padding:6px 16px;border-radius:20px;font-weight:bold;margin-top:8px;">ENTENDIDO</button>`;
+    document.getElementById('pwa-banner').style.display='flex';
   }
 }, 4000);
 </script>
