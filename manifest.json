@@ -1,6 +1,26 @@
-"start_url": "https://radioecosesiente.blogspot.com/?m=0",
-"display": "standalone",
-"icons": [
-  {"src":"https://radiosunidas.github.io/eco/img/logo-192.png","sizes":"192x192","type":"image/png"},
-  {"src":"https://radiosunidas.github.io/eco/img/logo-512.png","sizes":"512x512","type":"image/png"}
-]
+{
+  "name": "RADIOS UNIDAS PARA EL MUNDO",
+  "short_name": "RADIOS UNIDAS",
+  "description": "Transmisión 24/7 - Eco Radio Se Siente desde Sicuani para todo el Perú y el mundo.",
+  "start_url": "https://radioecosesiente.blogspot.com/?m=0",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#53012e",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es-PE",
+  "icons": [
+    {
+      "src": "https://radiosunidas.github.io/eco/img/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://radiosunidas.github.io/eco/img/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
