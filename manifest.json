@@ -1,5 +1,6 @@
-<link rel="manifest" href="https://radiosunidas.github.io/eco/manifest.json">
-<meta name="theme-color" content="#53012e">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Radios Unidas">
+"start_url": "https://radioecosesiente.blogspot.com/?m=0",
+"display": "standalone",
+"icons": [
+  {"src":"https://radiosunidas.github.io/eco/img/logo-192.png","sizes":"192x192","type":"image/png"},
+  {"src":"https://radiosunidas.github.io/eco/img/logo-512.png","sizes":"512x512","type":"image/png"}
+]
