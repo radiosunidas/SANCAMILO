@@ -1,26 +1,22 @@
-{
+﻿{
   "name": "RADIOS UNIDAS PARA EL MUNDO",
   "short_name": "RADIOS UNIDAS",
-  "description": "Transmisión 24/7 en vivo desde Sicuani - Eco Radio Se Siente",
+  "description": "Escucha la mejor señal desde Perú para el mundo",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#53012e",
   "orientation": "portrait-primary",
-  "scope": "./",
-  "lang": "es-PE",
   "icons": [
     {
-      "src": "https://radiosunidas.github.io/eco/img/logo-192.png",
+      "src": "imagen/logo.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "https://radiosunidas.github.io/eco/img/logo-512.png",
+      "src": "imagen/logo.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }

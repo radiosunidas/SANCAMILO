@@ -11,7 +11,7 @@
 
     <title>RADIOS UNIDAS PARA EL MUNDO</title>
 
-    <!-- ✅ PWA PRIORITARIO PARA ANDROID -->
+    <!-- ✅ MANIFEST - TÚ LO PUEDES CAMBIAR SIN PROBLEMAS -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#53012e">
     <meta name="mobile-web-app-capable" content="yes">
@@ -55,10 +55,9 @@
     @keyframes parpadeo{0%,100%{opacity:1}50%{opacity:0.2}}
     .contador-top{display:flex;align-items:center;gap:5px;background:rgba(37,211,102,0.1);padding:4px 8px;border-radius:15px;font-size:0.8rem;border:1px solid rgba(37,211,102,0.3)}
     .punto-verde{width:9px;height:9px;background:var(--activo);border-radius:50%;box-shadow:0 0 8px var(--activo)}
-    .hora-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
     .fecha-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
+    .hora-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
 
-    /* ✅ IFRAME MÁS GRANDE HACIA ABAJO */
     .contenedor-iframe{position:relative;width:100%;height:340px;margin-top:8px;border-radius:12px;overflow:hidden;border:2px solid var(--acento);box-shadow:0 0 15px rgba(83,1,46,0.4)}
     @media(min-width:768px){.contenedor-iframe{height:420px}}
     .iframe-radio{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
@@ -70,6 +69,42 @@
     .btn-yape:hover{background:#20bd5a;transform:scale(1.05)}
     .btn-paypal{background:var(--paypal);color:#fff;padding:8px 14px;border:none;border-radius:25px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:0.2s;font-size:0.85rem}
     .btn-paypal:hover{background:#001f54;transform:scale(1.05)}
+
+    /* ✅ CAJA ESTILIZADA PARA BOTÓN DE CHAT CON LOCUTOR */
+    .caja-whatsapp-locutor{
+        background:linear-gradient(135deg,#0d0d0d,#1a1a40);
+        border-radius:16px;
+        padding:12px;
+        margin-bottom:12px;
+        border:2px solid var(--activo);
+        box-shadow:0 0 15px rgba(37,211,102,0.25);
+        text-align:center;
+    }
+    .tit-whatsapp{
+        font-family:'Orbitron',sans-serif;
+        color:var(--dorado);
+        font-weight:700;
+        font-size:0.9rem;
+        margin-bottom:8px;
+    }
+    .btn-whatsapp-locutor{
+        display:inline-block;
+        width:100%;
+        padding:12px;
+        background:var(--activo);
+        color:#000;
+        border-radius:10px;
+        text-decoration:none;
+        font-weight:bold;
+        font-size:1rem;
+        transition:all 0.2s ease;
+        box-shadow:0 0 10px rgba(37,211,102,0.4);
+    }
+    .btn-whatsapp-locutor:hover{
+        background:#20bd5a;
+        transform:scale(1.03);
+        box-shadow:0 0 18px rgba(37,211,102,0.6);
+    }
 
     .ventana-yape, .ventana-paypal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:15px;gap:12px;overflow-y:auto}
     .ventana-yape.activo, .ventana-paypal.activo{display:flex}
@@ -98,7 +133,6 @@
 
     footer{position:fixed;bottom:0;left:0;width:100%;background:rgba(5,5,5,0.95);border-top:2px solid var(--cyan-neon);padding:7px;text-align:center;font-size:0.75rem;color:var(--texto-claro);font-family:'Orbitron',sans-serif}
 
-    /* ✅ BOTÓN DE INSTALACIÓN ESTILO ANTERIOR: VERDE ACEPTAR / ROJO CANCELAR */
     #pwa-banner{
         position:fixed;bottom:0;left:0;width:100%;
         background:#fff;color:#000;
@@ -165,10 +199,17 @@
             </div>
         </div>
 
+        <!-- ✅ CAJA Y BOTÓN ESTILIZADO: CHATEAR CON EL LOCUTOR -->
+        <div class="caja-whatsapp-locutor">
+            <div class="tit-whatsapp">📱 COMUNICACIÓN DIRECTA</div>
+            <a href="https://wa.me/51930282895?text=Hola%2C%20te%20escribo%20desde%20la%20p%C3%A1gina%20web%20de%20RADIOS%20UNIDAS" target="_blank" class="btn-whatsapp-locutor">
+                💬 Chatear con el Locutor
+            </a>
+        </div>
+
         <div class="chat">
             <div class="cab-chat">
                 <div class="tit-chat"><i class="fa-solid fa-comments"></i> CHAT EN VIVO</div>
-                <!-- ✅ YA NO APARECE EL CONTADOR, SOLO EL TÍTULO -->
             </div>
             <div class="caja-msj" id="cajaChat"></div>
             <div class="barra-chat">
@@ -191,7 +232,6 @@
     <a href="https://yape.pe/930282895" class="boton-accion" target="_blank">📲 Toca aquí para Yapear</a>
 </div>
 
-<!-- ✅ PAYPAL AHORA EN VENTANA IGUAL QUE YAPE -->
 <div class="ventana-paypal" id="ventanaPaypal">
     <button class="cerrar-ventana" onclick="cerrarPaypal()">×</button>
     <div class="datos-paypal">
@@ -210,7 +250,6 @@
 
 <footer>© 2026 RADIOS UNIDAS PARA EL MUNDO</footer>
 
-<!-- ✅ BOTÓN DE INSTALACIÓN ESTILO ANTERIOR -->
 <div id="pwa-banner">
     <h4>📱 ¿Deseas instalar RADIOS UNIDAS como aplicación?</h4>
     <p>Podrás escuchar la radio más rápido y sin anuncios</p>
@@ -221,12 +260,12 @@
 </div>
 
 <script>
-// ✅ PWA ENFOCADO EN ANDROID
+// ✅ PWA - LISTO PARA QUE TÚ CAMBIES LO QUE NECESITES
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log('✅ SW ACTIVO - ANDROID'))
-      .catch(err => console.log('❌ ERROR SW:', err));
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('✅ SW REGISTRADO'))
+      .catch(err => console.log('❌ ERROR:', err));
   });
 }
 
@@ -234,12 +273,14 @@ let instalacionPendiente = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   instalacionPendiente = e;
-  document.getElementById('pwa-banner').style.display = 'flex';
+  setTimeout(() => {
+    if(instalacionPendiente) document.getElementById('pwa-banner').style.display = 'flex';
+  }, 2000);
 });
 
 document.getElementById('btn-instalar').addEventListener('click', async () => {
   if (!instalacionPendiente) {
-    alert('📱 En Android: usa el menú del navegador → "Instalar aplicación"');
+    alert('📱 En Android: abre el menú del navegador → "Instalar aplicación"');
     return;
   }
   instalacionPendiente.prompt();
@@ -258,7 +299,6 @@ document.getElementById('btn-cancelar').onclick = () => {
 document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
 document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
 
-// ✅ FECHA Y HORA EN VIVO
 function actualizarFechaHora(){
   const f=new Date();
   const dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
@@ -277,7 +317,6 @@ function cerrarYape(){document.getElementById('ventanaYape').classList.remove('a
 function abrirPaypal(){document.getElementById('ventanaPaypal').classList.add('activo');document.body.style.overflow='hidden';}
 function cerrarPaypal(){document.getElementById('ventanaPaypal').classList.remove('activo');document.body.style.overflow='auto';}
 
-// ✅ CHAT: GUARDA 6 MESES, AL TERCER MENSAJE VA A WHATSAPP
 const caja=document.getElementById('cajaChat');
 const clave='chat_radios_unidas_v3';
 const diasGuardado=180;
