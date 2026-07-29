@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Locutores - Radios Unidas</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffcc66">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+        body{background:#0a0a12;color:#ffcc66;padding-bottom:75px;}
+
+        /* MENÚ SUPERIOR */
+        .menu-superior{
+            background:#11111a;border-bottom:1px solid #ffcc6640;
+            padding:12px 20px;display:flex;align-items:center;justify-content:space-between;
+            position:sticky;top:0;z-index:100;
+        }
+        .menu-superior .logo{font-size:1.4em;font-weight:bold;color:#ffcc66;}
+        .btn-menu{
+            display:flex;align-items:center;gap:8px;padding:8px 18px;
+            background:linear-gradient(180deg,#ffcc66,#e6b85c);color:#000;
+            text-decoration:none;border-radius:6px;font-weight:bold;
+            border:none;transition:all 0.25s;box-shadow:0 2px 8px #ffcc6630;
+        }
+        .btn-menu:hover{transform:translateY(-2px);box-shadow:0 4px 12px #ffcc6650;}
+
+        .seccion-locutores{max-width:1200px;margin:30px auto;text-align:center;padding:0 20px;}
+        .seccion-locutores h2{font-size:2em;margin-bottom:30px;color:#ffcc66;border-bottom:1px solid #ffcc66;padding-bottom:10px;}
+
+        .contenedor-locutores{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:25px;}
+
+        .tarjeta-locutor{
+            background:#11111a;border:1px solid #ffcc6640;border-radius:8px;padding:15px;
+            transition:all 0.3s ease;cursor:pointer;
+        }
+        .tarjeta-locutor:hover, .tarjeta-locutor:active{
+            transform:scale(1.08);z-index:10;
+            border-color:#ffcc66;box-shadow:0 0 15px #ffcc6650;
+        }
+
+        .foto-locutor{width:100%;height:220px;object-fit:cover;border-radius:4px;margin-bottom:15px;border:1px solid #ffcc6660;}
+        .nombre{font-size:1.3em;font-weight:bold;color:#fff;margin-bottom:5px;}
+        .programa{font-style:italic;color:#ffdd88;margin-bottom:5px;}
+        .horario{color:#ffcc66;font-size:0.95em;margin-bottom:10px;}
+        .descripcion{font-size:0.9em;color:#ccc;line-height:1.5;margin-bottom:15px;}
+
+        .redes{display:flex;justify-content:center;gap:12px;padding-top:10px;border-top:1px solid #ffcc6620;}
+        .redes a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:17px;color:#fff;text-decoration:none;transition:all 0.25s;}
+        .redes a:hover{transform:scale(1.1);}
+        .icon-face{background:#1877F2;}
+        .icon-tiktok{background:#050505;border:1px solid #ff0050;}
+        .icon-insta{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+        .icon-whatsapp{background:#25D366;}
+        .icon-youtube{background:#FF0000;}
+
+        /* BOTÓN VOLVER AL INICIO */
+        .volver-inicio{text-align:center;margin:40px 0;}
+        .btn-inicio{
+            display:inline-flex;align-items:center;gap:10px;padding:12px 30px;
+            background:linear-gradient(180deg,#ffcc66,#e6b85c);color:#000;
+            text-decoration:none;border-radius:6px;font-weight:bold;font-size:1em;
+            border:none;transition:all 0.25s;box-shadow:0 2px 8px #ffcc6630;
+        }
+        .btn-inicio:hover{transform:translateY(-2px);box-shadow:0 4px 15px #ffcc6650;}
+
+        /* BARRA REPRODUCTORA */
+        .barra-reproductor{
+            position:fixed;bottom:0;left:0;width:100%;
+            background:#0a0a12;padding:10px 20px;
+            display:flex;align-items:center;justify-content:center;
+            z-index:999;
+        }
+        .boton-play{
+            width:48px;height:48px;border-radius:50%;border:none;
+            background:#ff0000;color:#fff;font-size:20px;cursor:pointer;
+            transition:all 0.25s;
+            display:flex;align-items:center;justify-content:center;
+        }
+        .boton-play.reproduciendo{
+            animation:girar-borde 1.5s linear infinite;
+            box-shadow:0 0 0 3px #ff0000;
+        }
+        @keyframes girar-borde{
+            0%{ box-shadow:0 0 0 0 #ff000080; }
+            100%{ box-shadow:0 0 0 8px #ff000000; }
+        }
+        .boton-play:hover{transform:scale(1.15);background:#cc0000;}
+
+        @media(max-width:600px){
+            .seccion-locutores h2{font-size:1.6em;}
+            .foto-locutor{height:200px;}
+            .boton-play{width:42px;height:42px;font-size:17px;}
+            .btn-menu, .btn-inicio{padding:7px 14px;font-size:0.9em;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- MENÚ -->
+<div class="menu-superior">
+    <div class="logo">📻 RADIOS UNIDAS</div>
+    <a href="index.html" class="btn-menu">
+        <i class="fa-solid fa-house"></i>
+        INICIO
+    </a>
+</div>
+
+<section class="seccion-locutores">
+    <h2>🎙️ NUESTROS LOCUTORES</h2>
+    <div class="contenedor-locutores">
+
+        <!-- 1. JOSE LUIS LIMA - RUTA CORREGIDA -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/joseluislima.jpg" alt="José Luis Lima" class="foto-locutor">
+            <div class="nombre">José Luis Lima</div>
+            <div class="programa">📻 Los Grandes del Pueblo</div>
+            <div class="horario">Lunes a Viernes | 04:00 a 08:00 am</div>
+            <div class="descripcion">Conectando con la gente desde muy temprano.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/profile.php?id=100093972015283" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @josluisccunolima"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51969255730" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- 2. LUIS FERNANDO MAYTA -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/luisfernando.jpg" alt="Luis Fernando Mayta" class="foto-locutor">
+            <div class="nombre">Luis Fernando Mayta</div>
+            <div class="programa">🎵 Ruleta Musical - Música Variada</div>
+            <div class="horario">Lunes a Viernes | 09:00 am a 12:00 pm</div>
+            <div class="descripcion">La mejor selección para tu mañana.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/luisfernandolocutor" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <!-- 3. JUAN CARLOS CONDORI -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/juancarlos.jpg" alt="Juan Carlos Condori Ccasa" class="foto-locutor">
+            <div class="nombre">Juan Carlos Condori Ccasa</div>
+            <div class="programa">📻 Nada de lo Mismo</div>
+            <div class="horario">Lunes a Viernes | 05:00 pm a 07:00 pm</div>
+            <div class="descripcion">Contenido fresco y diferente cada tarde.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/juancarlos.condoriccasa" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @juncarloscondori357"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51965668467" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- 4. WALTER FLOREZ -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/walterflorez.jpg" alt="Walter Florez" class="foto-locutor">
+            <div class="nombre">Walter Florez</div>
+            <div class="programa">🎧 Factor 90tas</div>
+            <div class="horario">Sábados y Domingos | 03:00 pm a 07:00 pm</div>
+            <div class="descripcion">Lo mejor de la buena música de los 90.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/walter.florez.92167" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @walterflorez563"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51954892011" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- 5. EFRAIN HERRERA -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/efrainherrera.jpg" alt="Efraín Herrera" class="foto-locutor">
+            <div class="nombre">Efraín Herrera</div>
+            <div class="programa">🎶 Los Años Maravillosos</div>
+            <div class="horario">Solo Domingos | 07:00 pm a 11:00 pm</div>
+            <div class="descripcion">Recordando los mejores momentos.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/efrain.herrera.50309" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <!-- 6. JOSE CUTIRE -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/josecutire.jpg" alt="José Cutire Huayta" class="foto-locutor">
+            <div class="nombre">José Cutire Huayta</div>
+            <div class="programa">🎧 Música que Ecualiza tus Sentidos</div>
+            <div class="horario">Solo Domingos | 08:00 am a 12:00 pm</div>
+            <div class="descripcion">Conectando emociones con la mejor selección.</div>
+            <div class="redes">
+                <a href="https://fb.com/jose.cutire" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @joselitoelunico100"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51930282895" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- 7. ALBERTO BARRIOS -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/albertobarrios.jpg" alt="Alberto Barrios" class="foto-locutor">
+            <div class="nombre">Alberto Barrios</div>
+            <div class="programa">⚽ Ronda Deportiva - Reportero</div>
+            <div class="horario">Según programación</div>
+            <div class="descripcion">Toda la información deportiva al instante.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/alberto.barrios.78335" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @alberto.barrios902"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51999647373" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- 8. ALEX SANTANA -->
+        <div class="tarjeta-locutor">
+            <img src="galeria/alexsantana.jpg" alt="Alex Santana" class="foto-locutor">
+            <div class="nombre">Alex Santana</div>
+            <div class="programa">🎵 Tributo a los 90tas</div>
+            <div class="horario">Lunes a Viernes | 01:00 pm a 03:00 pm</div>
+            <div class="descripcion">La mejor música de una época inolvidable.</div>
+            <div class="redes">
+                <a href="https://www.facebook.com/piero.ballon.7" class="icon-face" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon-tiktok" target="_blank" title="TikTok: @alexsantana"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/51900000000" class="icon-whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTÓN VOLVER -->
+    <div class="volver-inicio">
+        <a href="index.html" class="btn-inicio">
+            <i class="fa-solid fa-arrow-left-long"></i>
+            VOLVER A PÁGINA PRINCIPAL
+        </a>
+    </div>
+</section>
+
+<!-- REPRODUCTOR FIJO CON TU STREAM -->
+<div class="barra-reproductor">
+    <audio id="stream" src="https://stream.zeno.fm/5b3fwcx4sfvuv" preload="none">
+    <button class="boton-play" id="btnPlay" onclick="reproducir()">
+        <i class="fa-solid fa-play"></i>
+    </button>
+</div>
+
+<script>
+const audio = document.getElementById('stream');
+const btn = document.getElementById('btnPlay');
+function reproducir(){
+    if(audio.paused){
+        audio.play();
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        btn.classList.add('reproduciendo');
+    }else{
+        audio.pause();
+        btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        btn.classList.remove('reproduciendo');
+    }
+}
+</script>
+
+</body>
+</html>
