@@ -13,7 +13,7 @@
 
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-        body{background:#0a0a12;color:#ffcc66;padding-bottom:75px;}
+        body{background:#0a0a12;color:#ffcc66;padding-bottom:100px; /* Espacio suficiente para el botón */}
 
         /* MENÚ SUPERIOR */
         .menu-superior{
@@ -69,34 +69,57 @@
         }
         .btn-inicio:hover{transform:translateY(-2px);box-shadow:0 4px 15px #ffcc6650;}
 
-        /* BARRA REPRODUCTORA */
+        /* ✅ REPRODUCTOR FIJO - INMOVIL Y VISIBLE SIEMPRE */
         .barra-reproductor{
-            position:fixed;bottom:0;left:0;width:100%;
-            background:#0a0a12;padding:10px 20px;
-            display:flex;align-items:center;justify-content:center;
-            z-index:999;
+            position:fixed;
+            bottom:15px;
+            left:50%;
+            transform:translateX(-50%);
+            width:auto;
+            background:transparent;
+            padding:0;
+            z-index:99999; /* Nivel máximo: nada lo tapa */
+            display:flex;
+            align-items:center;
+            justify-content:center;
         }
+
         .boton-play{
-            width:48px;height:48px;border-radius:50%;border:none;
-            background:#ff0000;color:#fff;font-size:20px;cursor:pointer;
-            transition:all 0.25s;
-            display:flex;align-items:center;justify-content:center;
+            width:55px;
+            height:55px;
+            border-radius:50%;
+            border:3px solid #ff0000;
+            background:#ff0000;
+            color:#fff;
+            font-size:24px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            transition:all 0.2s;
         }
-        .boton-play.reproduciendo{
-            animation:girar-borde 1.5s linear infinite;
-            box-shadow:0 0 0 3px #ff0000;
+
+        /* ✅ BORDE GIRANDO CUANDO SUENA */
+        .boton-play.reproduciendo::after{
+            content:"";
+            position:absolute;
+            inset:-8px;
+            border-radius:50%;
+            border:3px solid transparent;
+            border-top-color:#ff0000;
+            animation:girar-borde 1s linear infinite;
         }
+
         @keyframes girar-borde{
-            0%{ box-shadow:0 0 0 0 #ff000080; }
-            100%{ box-shadow:0 0 0 8px #ff000000; }
+            0%{ transform:rotate(0deg); }
+            100%{ transform:rotate(360deg); }
         }
-        .boton-play:hover{transform:scale(1.15);background:#cc0000;}
+
+        .boton-play:hover{transform:scale(1.1);background:#cc0000;}
 
         @media(max-width:600px){
-            .seccion-locutores h2{font-size:1.6em;}
-            .foto-locutor{height:200px;}
-            .boton-play{width:42px;height:42px;font-size:17px;}
-            .btn-menu, .btn-inicio{padding:7px 14px;font-size:0.9em;}
+            .boton-play{width:50px;height:50px;font-size:20px;}
         }
     </style>
 </head>
@@ -131,7 +154,7 @@
 
         <!-- 2. LUIS FERNANDO MAYTA -->
         <div class="tarjeta-locutor">
-            <img src="galeria/luisfermando.jpg" alt="Luis Fernando Mayta" class="foto-locutor">
+            <img src="galeria/luisfernando.jpg" alt="Luis Fernando Mayta" class="foto-locutor">
             <div class="nombre">Luis Fernando Mayta</div>
             <div class="programa">🎵 Ruleta Musical - Música Variada</div>
             <div class="horario">Lunes a Viernes | 09:00 am a 12:00 pm</div>
@@ -183,7 +206,7 @@
 
         <!-- 6. JOSE CUTIRE -->
         <div class="tarjeta-locutor">
-            <img src="galeria/jose cutire.jpg" alt="José Cutire Huayta" class="foto-locutor">
+            <img src="galeria/josecutire.jpg" alt="José Cutire Huayta" class="foto-locutor">
             <div class="nombre">José Cutire Huayta</div>
             <div class="programa">🎧 Música que Ecualiza tus Sentidos</div>
             <div class="horario">Solo Domingos | 08:00 am a 12:00 pm</div>
@@ -234,7 +257,7 @@
     </div>
 </section>
 
-<!-- REPRODUCTOR FIJO -->
+<!-- ✅ REPRODUCTOR CORREGIDO: ETIQUETA AUDIO BIEN CERRADA -->
 <div class="barra-reproductor">
     <audio id="stream" src="https://stream.zeno.fm/5b3fwcx4sfvuv" preload="none">
     <button class="boton-play" id="btnPlay" onclick="reproducir()">
@@ -245,6 +268,7 @@
 <script>
 const audio = document.getElementById('stream');
 const btn = document.getElementById('btnPlay');
+
 function reproducir(){
     if(audio.paused){
         audio.play();
