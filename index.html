@@ -6,14 +6,23 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="robots" content="index, follow">
-    <meta name="format-detection" content="telephone=no">
 
-    <title>RADIOS UNIDAS PARA EL MUNDO</title>
-
-    <!-- ✅ MANIFEST - TÚ LO PUEDES CAMBIAR SIN PROBLEMAS -->
-    <link rel="manifest" href="manifest.json">
+    <!-- 🚀 METADATOS POTENTES PARA GOOGLE -->
+    <title>RADIOS UNIDAS PARA EL MUNDO 📻 Emisoras Peruanas En Vivo</title>
+    <meta name="description" content="Radios Unidas para el Mundo: La mejor radio peruana con música variada, noticias, locutores talentosos y programación exclusiva las 24 horas del día, gratis y en alta calidad.">
+    <meta name="keywords" content="radio peruana, radios unidas, emisoras en vivo, música peruana, locutores, noticias perú, radio online, escuchar radio, peru en el mundo, emisoras latinas">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://radiosunidas.github.io/eco/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Radios Unidas para el Mundo 📻">
+    <meta property="og:description" content="Tu voz peruana llegando a todos los rincones del planeta.">
+    <meta property="og:image" content="https://radiosunidas.github.io/eco/img/logo-192.png">
+    <meta property="og:url" content="https://radiosunidas.github.io/eco/">
     <meta name="theme-color" content="#53012e">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"RadioStation","name":"Radios Unidas para el Mundo","url":"https://radiosunidas.github.io/eco/","description":"Emisoras radiales peruanas transmitiendo al mundo entero","inLanguage":"es-PE"}</script>
+
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Radios Unidas">
     <link rel="icon" type="image/png" sizes="192x192" href="https://radiosunidas.github.io/eco/img/logo-192.png">
@@ -24,7 +33,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+    /* 🔒 PROTECCIÓN ACTIVA */
     *{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;margin:0;padding:0;box-sizing:border-box;}
+    img{pointer-events:none;-webkit-user-select:none;user-select:none;}
     html,body{width:100%;min-height:100%;overflow-x:hidden;margin:0;padding:0}
     :root{
         --fondo:#050505; --panel:#111111; --acento:#53012e;
@@ -45,8 +56,17 @@
     .lista-opciones a{padding:10px 14px;color:var(--texto-claro);display:flex;align-items:center;gap:8px;font-weight:500;transition:0.15s;font-size:0.85rem;text-decoration:none}
     .lista-opciones a:hover{background:rgba(0,243,255,0.1);color:var(--cyan-neon)}
 
-    .contenedor-padre{max-width:1200px;margin:15px auto;padding:0 12px;display:grid;grid-template-columns:1fr;gap:15px;width:100%}
-    @media(min-width:900px){.contenedor-padre{grid-template-columns:1.4fr 1fr;gap:20px;margin:20px auto}}
+    /* ✅ ORDEN Y DISTRIBUCIÓN PERFECTA */
+    .contenedor-padre{max-width:1200px;margin:15px auto;padding:0 12px;gap:15px;width:100%;}
+    /* 🖥️ PC: Reproductor+apoyos abajo | Locutores al lado */
+    @media(min-width:900px){
+        .contenedor-padre{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin:20px auto;}
+        .bloque-izquierdo{display:flex;flex-direction:column;gap:15px;}
+    }
+    /* 📱 CELULAR: TODO EN COLUMNA UNO TRAS OTRO */
+    @media(max-width:899px){
+        .contenedor-padre{display:flex;flex-direction:column;gap:15px;}
+    }
 
     .reproductor{background:linear-gradient(135deg,#0d0d0d,#1a1a40);border-radius:16px;padding:15px;border:2px solid var(--cyan-neon);box-shadow:0 0 20px rgba(0,243,255,0.3)}
     .cabecera-radio{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;font-size:0.85rem}
@@ -62,49 +82,27 @@
     @media(min-width:768px){.contenedor-iframe{height:420px}}
     .iframe-radio{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
 
-    .yape-arriba-chat{margin-bottom:12px;padding:12px;background:rgba(255,204,102,0.08);border-radius:12px;border:2px solid var(--dorado);text-align:center;box-shadow:0 0 12px rgba(255,204,102,0.2)}
-    .tit-yape{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--dorado);font-weight:700;margin-bottom:6px;font-size:0.9rem;font-family:'Orbitron',sans-serif}
-    .grupo-aportes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-    .btn-yape{background:#25d366;color:#000;padding:8px 14px;border:none;border-radius:25px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:0.2s;font-size:0.85rem}
-    .btn-yape:hover{background:#20bd5a;transform:scale(1.05)}
-    .btn-paypal{background:var(--paypal);color:#fff;padding:8px 14px;border:none;border-radius:25px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:0.2s;font-size:0.85rem}
-    .btn-paypal:hover{background:#001f54;transform:scale(1.05)}
+    /* ✅ BLOQUE DE APOYOS Y CONTACTO DEBAJO DEL REPRODUCTOR */
+    .bloque-apoyos{background:rgba(255,204,102,0.07);border-radius:16px;padding:15px;border:2px solid var(--dorado);display:flex;flex-direction:column;gap:12px;}
+    .tit-yape{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--dorado);font-weight:700;font-size:0.95rem;font-family:'Orbitron',sans-serif}
+    .grupo-aportes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn-yape{background:#25d366;color:#000;padding:10px 20px;border:none;border-radius:25px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:0.2s;font-size:0.9rem}
+    .btn-yape:hover{background:#20bd5a;transform:scale(1.05);box-shadow:0 0 10px rgba(37,211,102,0.4)}
+    .btn-paypal{background:var(--paypal);color:#fff;padding:10px 20px;border:none;border-radius:25px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:0.2s;font-size:0.9rem}
+    .btn-paypal:hover{background:#001f54;transform:scale(1.05);box-shadow:0 0 10px rgba(0,48,135,0.4)}
 
-    /* ✅ CAJA ESTILIZADA PARA BOTÓN DE CHAT CON LOCUTOR */
-    .caja-whatsapp-locutor{
-        background:linear-gradient(135deg,#0d0d0d,#1a1a40);
-        border-radius:16px;
-        padding:12px;
-        margin-bottom:12px;
-        border:2px solid var(--activo);
-        box-shadow:0 0 15px rgba(37,211,102,0.25);
-        text-align:center;
-    }
-    .tit-whatsapp{
-        font-family:'Orbitron',sans-serif;
-        color:var(--dorado);
-        font-weight:700;
-        font-size:0.9rem;
-        margin-bottom:8px;
-    }
     .btn-whatsapp-locutor{
-        display:inline-block;
-        width:100%;
-        padding:12px;
-        background:var(--activo);
-        color:#000;
-        border-radius:10px;
-        text-decoration:none;
-        font-weight:bold;
-        font-size:1rem;
-        transition:all 0.2s ease;
-        box-shadow:0 0 10px rgba(37,211,102,0.4);
+        display:block;width:100%;max-width:400px;margin:0 auto;
+        padding:12px;background:var(--activo);color:#000;border-radius:10px;
+        text-decoration:none;font-weight:bold;font-size:1rem;text-align:center;
+        transition:all 0.2s ease;box-shadow:0 0 10px rgba(37,211,102,0.4);
     }
-    .btn-whatsapp-locutor:hover{
-        background:#20bd5a;
-        transform:scale(1.03);
-        box-shadow:0 0 18px rgba(37,211,102,0.6);
-    }
+    .btn-whatsapp-locutor:hover{background:#20bd5a;transform:scale(1.02);box-shadow:0 0 18px rgba(37,211,102,0.6);}
+
+    /* ✅ SECCIÓN LOCUTORES */
+    .seccion-locutores{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--dorado);box-shadow:0 0 15px rgba(255,204,102,0.2);height:clamp(380px,75vh,520px);}
+    .tit-locutores{font-family:'Orbitron',sans-serif;color:var(--dorado);font-weight:700;margin-bottom:8px;text-align:center;font-size:1rem}
+    .iframe-locutores{width:100%;height:calc(100% - 35px);border:none;border-radius:8px;}
 
     .ventana-yape, .ventana-paypal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:15px;gap:12px;overflow-y:auto}
     .ventana-yape.activo, .ventana-paypal.activo{display:flex}
@@ -115,50 +113,47 @@
     .boton-accion{display:inline-block;margin-top:10px;padding:9px 20px;background:var(--activo);color:#000;text-decoration:none;border-radius:25px;font-weight:700;transition:0.2s;font-size:0.9rem}
     .boton-accion:hover{background:#20bd5a;transform:scale(1.05)}
 
-    .chat{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--activo);display:flex;flex-direction:column;height:clamp(380px,70vh,480px);max-height:75vh;width:100%;box-shadow:0 0 15px rgba(37,211,102,0.2)}
-    .cab-chat{display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:1px solid var(--borde);margin-bottom:8px;flex-shrink:0}
-    .tit-chat{font-family:'Orbitron',sans-serif;font-size:0.95rem;font-weight:700;color:var(--dorado)}
-    .caja-msj{flex:1;overflow-y:auto;padding:8px;background:rgba(0,0,0,0.4);border-radius:8px;margin-bottom:8px;display:flex;flex-direction:column;gap:7px;border:1px solid rgba(37,211,102,0.2);flex-shrink:1}
-    .caja-msj::-webkit-scrollbar{width:4px}
-    .caja-msj::-webkit-scrollbar-thumb{background:var(--acento);border-radius:3px}
-    .msj{max-width:92%;padding:6px 9px;border-radius:9px;font-size:0.85rem}
-    .msj-yo{background:rgba(255,204,102,0.15);border-left:3px solid var(--dorado);align-self:flex-end}
-    .msj-radio{background:rgba(37,211,102,0.1);border-left:3px solid var(--activo);align-self:flex-start}
-    .quien{font-family:'Orbitron',sans-serif;font-weight:700;color:var(--dorado);font-size:0.75rem;margin-bottom:2px}
-    .barra-chat{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap}
-    .barra-chat input{padding:7px;border:1px solid var(--borde);background:rgba(0,0,0,0.4);color:#fff;border-radius:6px;outline:none;font-size:0.85rem;-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-    .barra-chat .nom{width:24%;min-width:85px}
-    .barra-chat .txt{flex:1;min-width:90px}
-    .barra-chat button{background:var(--activo);color:#000;border:none;padding:0 10px;border-radius:25px;font-weight:700;cursor:pointer;font-size:0.85rem}
+    .boton-chat-ia{
+        position:fixed;bottom:90px;right:20px;width:65px;height:65px;border-radius:50%;
+        background:linear-gradient(135deg,var(--activo),#12b850);color:#000;border:none;
+        font-size:28px;cursor:pointer;z-index:99999;display:flex;align-items:center;justify-content:center;
+        box-shadow:0 4px 15px rgba(37,211,102,0.45);transition:all 0.3s ease;
+    }
+    .boton-chat-ia:hover{transform:scale(1.18);box-shadow:0 6px 22px rgba(37,211,102,0.65);}
+
+    .ventana-chat-ia{
+        position:fixed;bottom:95px;right:20px;width:min(380px,95vw);height:min(520px,75vh);
+        background:var(--panel);border-radius:18px;border:2px solid var(--activo);box-shadow:0 8px 32px rgba(0,0,0,0.6);
+        z-index:100000;transform:translateY(30px) scale(0.92);opacity:0;visibility:hidden;transition:all 0.35s ease;
+        display:flex;flex-direction:column;overflow:hidden;
+    }
+    .ventana-chat-ia.abierto{transform:translateY(0) scale(1);opacity:1;visibility:visible;}
+    .cab-chat-ia{background:linear-gradient(135deg,var(--activo),#12b850);color:#000;padding:10px 15px;font-family:'Orbitron',sans-serif;font-weight:800;font-size:1rem;display:flex;justify-content:space-between;align-items:center;}
+    .cerrar-chat-ia{background:transparent;border:none;color:#000;font-size:22px;font-weight:bold;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.2s;}
+    .cerrar-chat-ia:hover{background:rgba(0,0,0,0.15);}
+    .caja-mensajes-ia{flex:1;padding:12px;overflow-y:auto;background:rgba(5,5,5,0.7);display:flex;flex-direction:column;gap:9px;}
+    .caja-mensajes-ia::-webkit-scrollbar{width:5px;}
+    .caja-mensajes-ia::-webkit-scrollbar-thumb{background:var(--activo);border-radius:4px;}
+    .mensaje{max-width:85%;padding:9px 13px;border-radius:18px;line-height:1.4;font-size:0.88rem;}
+    .mensaje-usuario{background:rgba(0,243,255,0.18);border:1px solid var(--cyan-neon);align-self:flex-end;border-bottom-right-radius:4px;}
+    .mensaje-ia{background:rgba(37,211,102,0.18);border:1px solid var(--activo);align-self:flex-start;border-bottom-left-radius:4px;color:#e6ffe6;}
+    .barra-escribir{display:flex;gap:6px;padding:10px;background:#1a1a1a;border-top:1px solid var(--borde);}
+    .barra-escribir input{flex:1;padding:9px 12px;border-radius:20px;border:1px solid var(--cyan-neon);background:#000;color:#fff;outline:none;}
+    .barra-escribir button{padding:9px 16px;border-radius:20px;background:var(--activo);color:#000;border:none;font-weight:bold;cursor:pointer;transition:0.2s;}
+    .barra-escribir button:disabled{background:#666;cursor:not-allowed;}
+    .barra-escribir button:hover:not(:disabled){background:#20bd5a;}
 
     footer{position:fixed;bottom:0;left:0;width:100%;background:rgba(5,5,5,0.95);border-top:2px solid var(--cyan-neon);padding:7px;text-align:center;font-size:0.75rem;color:var(--texto-claro);font-family:'Orbitron',sans-serif}
 
-    #pwa-banner{
-        position:fixed;bottom:0;left:0;width:100%;
-        background:#fff;color:#000;
-        padding:18px;text-align:center;
-        font-family:Arial,sans-serif;z-index:9999;
-        display:none;flex-direction:column;gap:15px;
-        border-top:3px solid #000;
-    }
+    #pwa-banner{position:fixed;bottom:0;left:0;width:100%;background:#fff;color:#000;padding:18px;text-align:center;font-family:Arial,sans-serif;z-index:9999;display:none;flex-direction:column;gap:15px;border-top:3px solid #000;}
     #pwa-banner h4{margin:0;font-size:1rem;color:#000}
     #pwa-banner p{margin:0 0 10px 0;font-size:0.9rem;color:#222}
     .botones-inst{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
-    #btn-instalar{
-        background:#25d366;color:#000;border:none;
-        padding:10px 25px;border-radius:4px;
-        font-weight:bold;cursor:pointer;
-        font-size:0.95rem;
-    }
-    #btn-cancelar{
-        background:#ff3333;color:#fff;border:none;
-        padding:10px 25px;border-radius:4px;
-        font-weight:bold;cursor:pointer;
-        font-size:0.95rem;
-    }
+    #btn-instalar{background:#25d366;color:#000;border:none;padding:10px 25px;border-radius:4px;font-weight:bold;cursor:pointer;font-size:0.95rem;}
+    #btn-cancelar{background:#ff3333;color:#fff;border:none;padding:10px 25px;border-radius:4px;font-weight:bold;cursor:pointer;font-size:0.95rem;}
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" onkeydown="return bloquearTeclado(event);">
 
 <nav>
     <div class="nav-cont">
@@ -166,9 +161,9 @@
         <div class="contenedor-menu">
             <button class="boton-menu" id="btnDesplegar">MENÚ <i class="fa-solid fa-chevron-down"></i></button>
             <div class="lista-opciones" id="menuDesplegable">
-                <a href="locutores.html"><i class="fa-solid fa-microphone"></i> Locutores</a>
+                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="#locutores" onclick="irALocutores();return false;"><i class="fa-solid fa-calendar-days"></i> Programación</a>
                 <a href="noticias.html"><i class="fa-solid fa-newspaper"></i> Noticias</a>
-                <a href="programas.html"><i class="fa-solid fa-calendar-days"></i> Programas</a>
                 <a href="contacto.html"><i class="fa-solid fa-envelope"></i> Contacto</a>
             </div>
         </div>
@@ -176,129 +171,187 @@
 </nav>
 
 <div class="contenedor-padre">
-    <div class="reproductor">
-        <div class="cabecera-radio">
-            <div class="etiqueta-live"><span class="punto-live"></span> EN VIVO 24/7</div>
-            <div class="fecha-actual" id="fecha"></div>
-            <div class="hora-actual" id="hora"></div>
-            <div class="contador-top"><span class="punto-verde"></span> Conectados: <strong id="conectados">420</strong></div>
+    <!-- ✅ BLOQUE IZQUIERDO: Reproductor + Apoyos justo debajo -->
+    <div class="bloque-izquierdo">
+        <div class="reproductor">
+            <div class="cabecera-radio">
+                <div class="etiqueta-live"><span class="punto-live"></span> EN VIVO 24/7</div>
+                <div class="fecha-actual" id="fecha"></div>
+                <div class="hora-actual" id="hora"></div>
+                <div class="contador-top"><span class="punto-verde"></span> Conectados: <strong id="conectados">420</strong></div>
+            </div>
+            <div class="contenedor-iframe">
+                <iframe class="iframe-radio" src="https://radiosunidas.github.io/eco/" allow="autoplay" allowfullscreen loading="lazy"></iframe>
+            </div>
         </div>
 
-        <div class="contenedor-iframe">
-            <iframe class="iframe-radio" src="https://radiosunidas.github.io/eco/" allow="autoplay" allowfullscreen loading="lazy"></iframe>
+        <!-- ✅ AQUÍ: YAPE, PAYPAL Y CONTACTO JUSTO DEBAJO -->
+        <div class="bloque-apoyos">
+            <div class="tit-yape">💛 ¡AYÚDANOS A SEGUIR AL AIRE!</div>
+            <div class="grupo-aportes">
+                <button class="btn-yape" onclick="abrirYape()">💳 YAPE</button>
+                <button class="btn-paypal" onclick="abrirPaypal()"><i class="fa-brands fa-paypal"></i> DONAR USD</button>
+            </div>
+            <a href="https://wa.me/51930282895?text=Hola%2C%20te%20escribo%20desde%20la%20p%C3%A1gina%20RADIOS%20UNIDAS" target="_blank" class="btn-whatsapp-locutor">
+                💬 CHATEAR DIRECTAMENTE CON EL LOCUTOR
+            </a>
         </div>
     </div>
 
-    <div class="columna-chat">
-        <div class="yape-arriba-chat">
-            <div class="tit-yape">💛 ¡Ayúdanos a seguir al aire!</div>
-            <p style="font-size:0.8rem;color:var(--texto-claro);margin-bottom:5px;">Cualquier aporte nos ayuda mucho</p>
-            <div class="grupo-aportes">
-                <button class="btn-yape" onclick="abrirYape()">💳 YAPE</button>
-                <button class="btn-paypal" onclick="abrirPaypal()"><i class="fa-brands fa-paypal"></i> PAYPAL</button>
-            </div>
-        </div>
+    <!-- ✅ AL LADO EN PC, DEBAJO EN CELULAR: LOCUTORES -->
+    <div class="seccion-locutores" id="locutores">
+        <h3 class="tit-locutores"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES</h3>
+        <iframe class="iframe-locutores" src="locutores.html" title="Locutores y horarios" loading="lazy"></iframe>
+    </div>
+</div>
 
-        <!-- ✅ CAJA Y BOTÓN ESTILIZADO: CHATEAR CON EL LOCUTOR -->
-        <div class="caja-whatsapp-locutor">
-            <div class="tit-whatsapp">📱 COMUNICACIÓN DIRECTA</div>
-            <a href="https://wa.me/51930282895?text=Hola%2C%20te%20escribo%20desde%20la%20p%C3%A1gina%20web%20de%20RADIOS%20UNIDAS" target="_blank" class="btn-whatsapp-locutor">
-                💬 Chatear con el Locutor
-            </a>
-        </div>
+<button class="boton-chat-ia" id="abrirChatIA" title="Hablar con Asistente Inteligente">
+    <i class="fa-solid fa-robot"></i>
+</button>
 
-        <div class="chat">
-            <div class="cab-chat">
-                <div class="tit-chat"><i class="fa-solid fa-comments"></i> CHAT EN VIVO</div>
-            </div>
-            <div class="caja-msj" id="cajaChat"></div>
-            <div class="barra-chat">
-                <input type="text" class="nom" id="miNom" placeholder="Tu nombre" maxlength="20">
-                <input type="text" class="txt" id="miMsj" placeholder="Escribe tu saludo..." maxlength="200">
-                <button onclick="enviarMsj()">Enviar</button>
-            </div>
-        </div>
+<div class="ventana-chat-ia" id="ventanaChatIA">
+    <div class="cab-chat-ia">
+        <span><i class="fa-solid fa-robot"></i> ASISTENTE VIRTUAL</span>
+        <button class="cerrar-chat-ia" id="cerrarChatIA">×</button>
+    </div>
+    <div class="caja-mensajes-ia" id="cajaMensajesIA">
+        <div class="mensaje mensaje-ia">👋 ¡Hola! Bienvenido a Radios Unidas 📻 Pregúntame horarios, locutores o ayuda 😊</div>
+    </div>
+    <div class="barra-escribir">
+        <input type="text" id="textoPregunta" placeholder="Escribe tu pregunta..." maxlength="300">
+        <button id="enviarPregunta">Enviar</button>
     </div>
 </div>
 
 <div class="ventana-yape" id="ventanaYape">
     <button class="cerrar-ventana" onclick="cerrarYape()">×</button>
     <div class="datos-yape">
-        <h3>💛 APOYO A LA RADIO</h3>
+        <h3>💛 APOYO CON YAPE</h3>
         <p>Número: <strong>+51 930 282 895</strong></p>
-        <p>A nombre: <strong>José Cutire</strong></p>
+        <p>A nombre: José Cutire Huayta</p>
     </div>
     <img src="https://i.imgur.com/cvMmHiM.jpeg" alt="QR Yape" class="qr-yape">
-    <a href="https://yape.pe/930282895" class="boton-accion" target="_blank">📲 Toca aquí para Yapear</a>
+    <a href="https://yape.pe/930282895" class="boton-accion" target="_blank">📲 Ir directo a Yape</a>
 </div>
 
 <div class="ventana-paypal" id="ventanaPaypal">
     <button class="cerrar-ventana" onclick="cerrarPaypal()">×</button>
     <div class="datos-paypal">
-        <h3>💙 DONACIÓN POR PAYPAL</h3>
-        <p>Correo: <strong>fielangelo@gmail.com</strong></p>
-        <p>Moneda: Dólares (USD)</p>
+        <h3>💙 DONACIÓN SEGURA</h3>
+        <p>Correo: fielangelo@gmail.com | Moneda: Dólares</p>
     </div>
     <form action="https://www.paypal.com/donate" method="post" target="_blank" style="text-align:center;margin-top:10px;">
         <input type="hidden" name="business" value="fielangelo@gmail.com">
         <input type="hidden" name="currency_code" value="USD">
-        <input type="number" name="amount" placeholder="Monto a donar USD" min="1" step="0.01" style="padding:8px;border-radius:4px;border:none;margin-bottom:10px;width:80%;max-width:250px;text-align:center;">
+        <input type="number" name="amount" placeholder="Monto USD" min="1" step="0.01" style="padding:8px;border-radius:4px;border:none;margin-bottom:10px;width:80%;max-width:250px;text-align:center;">
         <br>
         <button type="submit" class="boton-accion">💙 Ir a PayPal</button>
     </form>
 </div>
 
-<footer>© 2026 RADIOS UNIDAS PARA EL MUNDO</footer>
+<footer>© 2026 RADIOS UNIDAS PARA EL MUNDO | Derechos Reservados - Prohibido copiar sin autorización</footer>
 
 <div id="pwa-banner">
-    <h4>📱 ¿Deseas instalar RADIOS UNIDAS como aplicación?</h4>
-    <p>Podrás escuchar la radio más rápido y sin anuncios</p>
+    <h4>📱 Instalar como aplicación rápida</h4>
+    <p>Escucha sin complicaciones y más rápido</p>
     <div class="botones-inst">
-        <button id="btn-instalar">✅ Aceptar e Instalar</button>
-        <button id="btn-cancelar">❌ Cancelar</button>
+        <button id="btn-instalar">✅ Aceptar</button>
+        <button id="btn-cancelar">❌ Ahora no</button>
     </div>
 </div>
 
 <script>
-// ✅ PWA - LISTO PARA QUE TÚ CAMBIES LO QUE NECESITES
+// 🔒 SEGURIDAD
+function bloquearTeclado(e){
+    if ((e.ctrlKey && (e.keyCode==67 || e.keyCode==85 || e.keyCode==83 || e.keyCode==80)) || e.keyCode==123 || (e.shiftKey && e.keyCode==73)){
+        alert("🔒 Contenido protegido | Radios Unidas");return false;
+    }
+    return true;
+}
+document.addEventListener('contextmenu',e=>{e.preventDefault();alert("🔒 No se permite copiar ni extraer contenido");});
+
+function irALocutores(){document.getElementById('locutores').scrollIntoView({behavior:'smooth'});}
+
+// ==============================================
+// 🔔 SISTEMA DE RECORDATORIOS DE PROGRAMAS
+// ==============================================
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!('Notification' in window)) return;
+
+  // Pedir permiso suavemente
+  if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+    setTimeout(async () => {
+      const permiso = await Notification.requestPermission();
+      if (permiso === "granted") {
+        nuevaNotificacion("✅ Listo!", "Te avisaré cuando empiecen tus programas favoritos 📻", "https://radiosunidas.github.io/eco/img/logo-192.png");
+      }
+    }, 3000);
+  }
+
+  // Iniciar reloj revisor cada 60 segundos
+  setInterval(verificarHorarios, 60000);
+  verificarHorarios(); // comprobar apenas cargue
+});
+
+// Función para lanzar notificación visible
+function nuevaNotificacion(titulo, cuerpo, icono="https://radiosunidas.github.io/eco/img/logo-192.png"){
+  if (Notification.permission === "granted") {
+    // Si está abierta la página: aviso rápido
+    if (document.hasFocus()){
+      alert(`📻 ${titulo}\n${cuerpo}`);
+    }
+    // Notificación del sistema (funciona con SW/PWA instalada)
+    new Notification(titulo, {
+      body: cuerpo,
+      icon: icono,
+      tag: "programa-radio", // agrupa para no llenar pantalla
+      renotify: false,
+      silent: false // con sonido/aviso
+    });
+  }
+}
+
+// 🕓 REGLAS DE HORARIOS EXACTAS: LUNES A VIERNES SOLAMENTE
+let avisados = {joseLuis:false, juanCarlos:false}; // evita repetir seguido
+
+function verificarHorarios(){
+  const ahora = new Date();
+  const diaSemana = ahora.getDay(); // 0=Dom,1=Lun,5=Vie,6=Sáb
+  const hora = ahora.getHours();
+  const soloLaborables = diaSemana >=1 && diaSemana <=5;
+
+  // 🎤 JOSÉ LUIS LIMA: 04:00 AM - 08:00 AM
+  if(soloLaborables && hora === 4 && !avisados.joseLuis){
+    nuevaNotificacion("🎤 AHORA EN VIVO: José Luis Lima", 
+      "Programa: LOS GRANDES DEL PUEBLO 🎶 | Hasta las 8:00 AM 🕗 ¡Entra ya!", 
+      "https://radiosunidas.github.io/eco/img/logo-192.png");
+    avisados.joseLuis = true;
+  }
+  else if(hora >=8) avisados.joseLuis=false;
+
+  // 🎤 JUAN CARLOS: 17:00 - 19:00
+  if(soloLaborables && hora ===17 && !avisados.juanCarlos){
+    nuevaNotificacion("🎤 AHORA EN VIVO: Juan Carlos Condori", 
+      "Programa: NADA DE LO MISMO ✨ | Desde las 5 hasta las 7 tarde 🕖 ¡Acompáñanos!", 
+      "https://radiosunidas.github.io/eco/img/logo-192.png");
+    avisados.juanCarlos = true;
+  }
+  else if(hora >=19) avisados.juanCarlos=false;
+}
+
+// 📲 REGISTRO DEL SERVICE WORKER PARA PWA Y AVISOS FUERA DE LA APP
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('✅ SW REGISTRADO'))
-      .catch(err => console.log('❌ ERROR:', err));
+  window.addEventListener('load', async () => {
+    try {
+      const registro = await navigator.serviceWorker.register('./sw.js');
+      console.log("✅ SW listo perfectamente para avisos y PWA", registro);
+    } catch (err) {
+      console.log("❌ SW temporalmente no disponible:", err);
+    }
   });
 }
 
-let instalacionPendiente = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  instalacionPendiente = e;
-  setTimeout(() => {
-    if(instalacionPendiente) document.getElementById('pwa-banner').style.display = 'flex';
-  }, 2000);
-});
-
-document.getElementById('btn-instalar').addEventListener('click', async () => {
-  if (!instalacionPendiente) {
-    alert('📱 En Android: abre el menú del navegador → "Instalar aplicación"');
-    return;
-  }
-  instalacionPendiente.prompt();
-  const resultado = await instalacionPendiente.userChoice;
-  if (resultado.outcome === 'accepted') {
-    document.getElementById('pwa-banner').style.display = 'none';
-  }
-  instalacionPendiente = null;
-});
-
-document.getElementById('btn-cancelar').onclick = () => {
-  document.getElementById('pwa-banner').style.display = 'none';
-  instalacionPendiente = null;
-};
-
-document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
-document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
-
+// FECHA Y HORA EN VIVO
 function actualizarFechaHora(){
   const f=new Date();
   const dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
@@ -308,73 +361,67 @@ function actualizarFechaHora(){
 }
 setInterval(actualizarFechaHora,1000);actualizarFechaHora();
 
-setInterval(()=>{
-  document.getElementById('conectados').textContent=Math.floor(Math.random()*51)+400;
-},5000);
+setInterval(()=>{document.getElementById('conectados').textContent=Math.floor(Math.random()*51)+400;},5000);
 
 function abrirYape(){document.getElementById('ventanaYape').classList.add('activo');document.body.style.overflow='hidden';}
 function cerrarYape(){document.getElementById('ventanaYape').classList.remove('activo');document.body.style.overflow='auto';}
 function abrirPaypal(){document.getElementById('ventanaPaypal').classList.add('activo');document.body.style.overflow='hidden';}
 function cerrarPaypal(){document.getElementById('ventanaPaypal').classList.remove('activo');document.body.style.overflow='auto';}
 
-const caja=document.getElementById('cajaChat');
-const clave='chat_radios_unidas_v3';
-const diasGuardado=180;
-const resp=['¡Qué gusto saludarte! 📻','¡Gracias por escribir! 🎵','¡Bienvenido! ✨','¡Un gusto tenerte aquí! 👋'];
-let contadorMensajes=0;
+document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
+document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
 
-function cargarChat(){
-  const guardado=localStorage.getItem(clave);
-  if(guardado){
-    const datos=JSON.parse(guardado);
-    const ahora=Date.now();
-    const filtrado=datos.filter(m=>(ahora-m.fecha)<(diasGuardado*24*60*60*1000));
-    localStorage.setItem(clave,JSON.stringify(filtrado));
-    filtrado.forEach(m=>agregarMsj(m.nombre,m.texto,m.esRadio));
-  }else{
-    agregarMsj('📻 RADIO','¡Bienvenidos! Escribe aquí tu saludo 🎙️',true);
-  }
-  caja.scrollTop=caja.scrollHeight;
+// 🤖 TU ASISTENTE INTELIGENTE
+const API_KEY = "gsk_TYkJthMNpXBOKjvCYjkVWGdyb3FYux8XNhmHxztfvlvz39MzfMT";
+const cajaMsjIA = document.getElementById('cajaMensajesIA');
+
+document.getElementById('abrirChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.toggle('abierto');
+document.getElementById('cerrarChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.remove('abierto');
+
+function agregarMensaje(texto, esUsuario=false){
+    const div=document.createElement('div');
+    div.className = `mensaje ${esUsuario?'mensaje-usuario':'mensaje-ia'}`;
+    div.textContent=texto;
+    cajaMsjIA.appendChild(div);
+    cajaMsjIA.scrollTop=cajaMsjIA.scrollHeight;
 }
 
-function guardarChat(nombre,texto,esRadio=false){
-  const actual=JSON.parse(localStorage.getItem(clave)||'[]');
-  actual.push({nombre,texto,esRadio,fecha:Date.now()});
-  localStorage.setItem(clave,JSON.stringify(actual));
+async function obtenerRespuestaIA(pregunta){
+    try{
+        const boton=document.getElementById('enviarPregunta');
+        boton.disabled=true;boton.textContent='Escribiendo...';
+
+        const respuesta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({contents:[{parts:[{text:`Responde SIEMPRE amable, corto, claro, alegre, como asistente OFICIAL DE RADIOS UNIDAS PARA EL MUNDO 📻, habla como peruano, palabras sencillas y cercanas: ${pregunta}`}]}]})
+        });
+
+        const datos=await respuesta.json();
+        const textoRespuesta = datos.candidates?.[0]?.content?.parts?.[0]?.text || 'Disculpa amigo, estamos ajustando un poquito los sistemas, vuelve a intentar en un momento 📻 Gracias por tu paciencia.';
+        agregarMensaje(textoRespuesta);
+    }catch(err){
+        agregarMensaje('🔧 Pequeño ajuste técnico por ahora, seguimos listos para escucharte y servirte siempre 📻 Radios Unidas contigo.');
+    }finally{
+        document.getElementById('enviarPregunta').disabled=false;
+        document.getElementById('enviarPregunta').textContent='Enviar';
+    }
 }
 
-function agregarMsj(n,t,ia=false){
-  const h=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  const m=document.createElement('div');
-  m.className=ia?'msj msj-radio':'msj msj-yo';
-  m.innerHTML=`<div class="quien">${n} <span style="font-size:0.7rem;color:#888;">${h}</span></div>${t}`;
-  caja.appendChild(m);
-  caja.scrollTop=caja.scrollHeight;
-  guardarChat(n,t,ia);
-}
+document.getElementById('enviarPregunta').onclick=()=>{
+    const texto=document.getElementById('textoPregunta').value.trim();
+    if(!texto)return;
+    agregarMensaje(texto,true);
+    document.getElementById('textoPregunta').value='';
+    obtenerRespuestaIA(texto);
+};
+document.getElementById('textoPregunta').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('enviarPregunta').click();});
 
-function enviarMsj(){
-  const n=document.getElementById('miNom').value.trim()||'Invitado';
-  const t=document.getElementById('miMsj').value.trim();
-  if(!t)return;
-
-  contadorMensajes++;
-  agregarMsj(n,t);
-  document.getElementById('miMsj').value='';
-
-  setTimeout(()=>agregarMsj('🤖 ASISTENTE',resp[Math.floor(Math.random()*resp.length)],true),1200);
-
-  if(contadorMensajes===3){
-    setTimeout(()=>{
-      const texto=encodeURIComponent(`Hola locutor! Soy ${n}: ${t}`);
-      window.open(`https://wa.me/51930282895?text=${texto}`,'_blank');
-      contadorMensajes=0;
-    },1800);
-  }
-}
-
-document.getElementById('miMsj').addEventListener('keydown',e=>{if(e.key==='Enter')enviarMsj();});
-window.onload=cargarChat;
+// INSTALACIÓN PWA
+let instalacionPendiente=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e;setTimeout(()=>{if(instalacionPendiente)document.getElementById('pwa-banner').style.display='flex';},2500);});
+document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendiente){alert("📱 En Android: abre menú navegador > Instalar aplicación");return;}instalacionPendiente.prompt();const res=await instalacionPendiente.userChoice;if(res.outcome==='accepted')document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
+document.getElementById('btn-cancelar').onclick=()=>{document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 </script>
 
 </body>
