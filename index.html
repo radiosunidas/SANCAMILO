@@ -12,12 +12,12 @@
     <meta name="description" content="Radios Unidas para el Mundo: La mejor radio peruana con música variada, noticias, locutores talentosos y programación exclusiva las 24 horas del día, gratis y en alta calidad.">
     <meta name="keywords" content="radio peruana, radios unidas, emisoras en vivo, música peruana, locutores, noticias perú, radio online, escuchar radio, peru en el mundo, emisoras latinas">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://radiosunidas.github.io/eco/">
+    <link rel="canonical" href="https://radiosunidas.github.io/play/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Radios Unidas para el Mundo 📻">
     <meta property="og:description" content="Tu voz peruana llegando a todos los rincones del planeta.">
-    <meta property="og:image" content="https://radiosunidas.github.io/eco/img/logo-192.png">
-    <meta property="og:url" content="https://radiosunidas.github.io/eco/">
+    <meta property="og:image" content="https://radiosunidas.github.io/SANCAMILO/imagen/logo.png">
+    <meta property="og:url" content="https://radiosunidas.github.io/play/">
     <meta name="theme-color" content="#53012e">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"RadioStation","name":"Radios Unidas para el Mundo","url":"https://radiosunidas.github.io/eco/","description":"Emisoras radiales peruanas transmitiendo al mundo entero","inLanguage":"es-PE"}</script>
 
@@ -25,9 +25,9 @@
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Radios Unidas">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://radiosunidas.github.io/eco/img/logo-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://radiosunidas.github.io/SANCAMILO/imagen/logo.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link relpreconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -56,11 +56,11 @@
     .lista-opciones a{padding:10px 14px;color:var(--texto-claro);display:flex;align-items:center;gap:8px;font-weight:500;transition:0.15s;font-size:0.85rem;text-decoration:none}
     .lista-opciones a:hover{background:rgba(0,243,255,0.1);color:var(--cyan-neon)}
 
-    /* ✅ ORDEN Y DISTRIBUCIÓN PERFECTA */
-    .contenedor-padre{max-width:1200px;margin:15px auto;padding:0 12px;gap:15px;width:100%;}
-    /* 🖥️ PC: Reproductor+apoyos abajo | Locutores al lado */
+    /* ✅ ORDEN Y DISTRIBUCIÓN MEJORADA - MÁS ANCHO Y ALTO EN PC */
+    .contenedor-padre{max-width:1400px;margin:15px auto;padding:0 12px;gap:25px;width:100%;}
+    /* 🖥️ PC: Ajustado para que locutores sea amplio y alto */
     @media(min-width:900px){
-        .contenedor-padre{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin:20px auto;}
+        .contenedor-padre{display:grid;grid-template-columns:1.2fr 1.1fr;gap:25px;margin:20px auto;} /* Más ancho la columna de locutores */
         .bloque-izquierdo{display:flex;flex-direction:column;gap:15px;}
     }
     /* 📱 CELULAR: TODO EN COLUMNA UNO TRAS OTRO */
@@ -99,10 +99,10 @@
     }
     .btn-whatsapp-locutor:hover{background:#20bd5a;transform:scale(1.02);box-shadow:0 0 18px rgba(37,211,102,0.6);}
 
-    /* ✅ SECCIÓN LOCUTORES */
-    .seccion-locutores{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--dorado);box-shadow:0 0 15px rgba(255,204,102,0.2);height:clamp(480px,75vh,520px);}
-    .tit-locutores{font-family:'Orbitron',sans-serif;color:var(--dorado);font-weight:700;margin-bottom:8px;text-align:center;font-size:1rem}
-    .iframe-locutores{width:100%;height:calc(100% - 35px);border:none;border-radius:8px;}
+    /* ✅ SECCIÓN LOCUTORES: MÁS ALTA, AMPLIA Y LLENA ESPACIO */
+    .seccion-locutores{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--dorado);box-shadow:0 0 15px rgba(255,204,102,0.2);min-height:600px;height:clamp(600px,85vh,680px);width:100%;} /* 📏 AUMENTADA ALTURA Y ANCHO */
+    .tit-locutores{font-family:'Orbitron',sans-serif;color:var(--dorado);font-weight:700;margin-bottom:8px;text-align:center;font-size:1.1rem}
+    .iframe-locutores{width:100%;height:calc(100% - 40px);border:none;border-radius:8px;} /* 🖥️ LLENA TODO EL ANCHO DISPONIBLE */
 
     .ventana-yape, .ventana-paypal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:15px;gap:12px;overflow-y:auto}
     .ventana-yape.activo, .ventana-paypal.activo{display:flex}
@@ -198,10 +198,10 @@
         </div>
     </div>
 
-    <!-- ✅ AL LADO EN PC, DEBAJO EN CELULAR: LOCUTORES -->
+    <!-- ✅ AL LADO EN PC: MÁS ANCHO Y MUCHO MÁS LARGO/ALTO, COMO PEDISTE -->
     <div class="seccion-locutores" id="locutores">
-        <h3 class="tit-locutores"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES</h3>
-        <iframe class="iframe-locutores" src="locutores.html" title="Locutores y horarios" loading="lazy"></iframe>
+        <h3 class="tit-locutores"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES Y COLABORADORES</h3>
+        <iframe class="iframe-locutores" src="locutores.html" title="Locutores y horarios completos" loading="lazy"></iframe>
     </div>
 </div>
 
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setTimeout(async () => {
       const permiso = await Notification.requestPermission();
       if (permiso === "granted") {
-        nuevaNotificacion("✅ Listo!", "Te avisaré cuando empiecen tus programas favoritos 📻", "https://radiosunidas.github.io/eco/img/logo-192.png");
+        nuevaNotificacion("✅ Listo!", "Te avisaré cuando empiecen tus programas favoritos 📻", "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
       }
     }, 3000);
   }
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Función para lanzar notificación visible
-function nuevaNotificacion(titulo, cuerpo, icono="https://radiosunidas.github.io/eco/img/logo-192.png"){
+function nuevaNotificacion(titulo, cuerpo, icono="https://radiosunidas.github.io/SANCAMILO/imagen/logo.png"){
   if (Notification.permission === "granted") {
     // Si está abierta la página: aviso rápido
     if (document.hasFocus()){
@@ -324,7 +324,7 @@ function verificarHorarios(){
   if(soloLaborables && hora === 4 && !avisados.joseLuis){
     nuevaNotificacion("🎤 AHORA EN VIVO: José Luis Lima", 
       "Programa: LOS GRANDES DEL PUEBLO 🎶 | Hasta las 8:00 AM 🕗 ¡Entra ya!", 
-      "https://radiosunidas.github.io/eco/img/logo-192.png");
+      "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
     avisados.joseLuis = true;
   }
   else if(hora >=8) avisados.joseLuis=false;
@@ -333,7 +333,7 @@ function verificarHorarios(){
   if(soloLaborables && hora ===17 && !avisados.juanCarlos){
     nuevaNotificacion("🎤 AHORA EN VIVO: Juan Carlos Condori", 
       "Programa: NADA DE LO MISMO ✨ | Desde las 5 hasta las 7 tarde 🕖 ¡Acompáñanos!", 
-      "https://radiosunidas.github.io/eco/img/logo-192.png");
+      "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
     avisados.juanCarlos = true;
   }
   else if(hora >=19) avisados.juanCarlos=false;
@@ -425,4 +425,4 @@ document.getElementById('btn-cancelar').onclick=()=>{document.getElementById('pw
 </script>
 
 </body>
-</html>b
+</html>
