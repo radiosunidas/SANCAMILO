@@ -275,81 +275,38 @@ function irALocutores(){document.getElementById('locutores').scrollIntoView({beh
 // ==============================================
 // 🔔 SISTEMA DE RECORDATORIOS DE PROGRAMAS
 // ==============================================
-document.addEventListener('DOMContentLoaded', async () => {
-  if (!('Notification' in window)) return;
-
-  // Pedir permiso suavemente
-  if (Notification.permission !== "granted" && Notification.permission !== "denied") {
-    setTimeout(async () => {
-      const permiso = await Notification.requestPermission();
-      if (permiso === "granted") {
-        nuevaNotificacion("✅ Listo!", "Te avisaré cuando empiecen tus programas favoritos 📻", "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
-      }
-    }, 3000);
-  }
-
-  // Iniciar reloj revisor cada 60 segundos
-  setInterval(verificarHorarios, 60000);
-  verificarHorarios(); // comprobar apenas cargue
-});
-
-// Función para lanzar notificación visible
-function nuevaNotificacion(titulo, cuerpo, icono="https://radiosunidas.github.io/SANCAMILO/imagen/logo.png"){
-  if (Notification.permission === "granted") {
-    // Si está abierta la página: aviso rápido
-    if (document.hasFocus()){
-      alert(`📻 ${titulo}\n${cuerpo}`);
-    }
-    // Notificación del sistema (funciona con SW/PWA instalada)
-    new Notification(titulo, {
-      body: cuerpo,
-      icon: icono,
-      tag: "programa-radio", // agrupa para no llenar pantalla
-      renotify: false,
-      silent: false // con sonido/aviso
-    });
-  }
-}
-
-// 🕓 REGLAS DE HORARIOS EXACTAS: LUNES A VIERNES SOLAMENTE
-let avisados = {joseLuis:false, juanCarlos:false}; // evita repetir seguido
-
-function verificarHorarios(){
-  const ahora = new Date();
-  const diaSemana = ahora.getDay(); // 0=Dom,1=Lun,5=Vie,6=Sáb
-  const hora = ahora.getHours();
-  const soloLaborables = diaSemana >=1 && diaSemana <=5;
-
-  // 🎤 JOSÉ LUIS LIMA: 04:00 AM - 08:00 AM
-  if(soloLaborables && hora === 4 && !avisados.joseLuis){
-    nuevaNotificacion("🎤 AHORA EN VIVO: José Luis Lima", 
-      "Programa: LOS GRANDES DEL PUEBLO 🎶 | Hasta las 8:00 AM 🕗 ¡Entra ya!", 
-      "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
-    avisados.joseLuis = true;
-  }
-  else if(hora >=8) avisados.joseLuis=false;
-
-  // 🎤 JUAN CARLOS: 17:00 - 19:00
-  if(soloLaborables && hora ===17 && !avisados.juanCarlos){
-    nuevaNotificacion("🎤 AHORA EN VIVO: Juan Carlos Condori", 
-      "Programa: NADA DE LO MISMO ✨ | Desde las 5 hasta las 7 tarde 🕖 ¡Acompáñanos!", 
-      "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png");
-    avisados.juanCarlos = true;
-  }
-  else if(hora >=19) avisados.juanCarlos=false;
-}
-
-// 📲 REGISTRO DEL SERVICE WORKER PARA PWA Y AVISOS FUERA DE LA APP
+// 📲 REGISTRO COMPLETO + PERMISOS ESPECIALES
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const registro = await navigator.serviceWorker.register('./sw.js');
-      console.log("✅ SW listo perfectamente para avisos y PWA", registro);
-    } catch (err) {
-      console.log("❌ SW temporalmente no disponible:", err);
-    }
+      const registro = await navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'});
+      await registro.update(); // CARGA VERSIÓN NUEVA AL INSTANTE
+
+      // 📢 PEDIR PERMISO EXTRA: REVISIONES PERIÓDICAS (CLAVE PARA FUNCIONAR SIEMPRE)
+      if ('periodicSync' in navigator.serviceWorker) {
+        const estado = await navigator.permissions.query({name:'periodic-background-sync'});
+        if(estado.state === 'granted') console.log("✅ Permiso fondo máximo activado");
+        else alert("💡 CONSEJO: En ajustes de tu celular: Permitir notificaciones + NO ahorro batería para esta App 📲");
+      }
+      console.log("✅ SISTEMA DE AVISOS LISTO Y ESTABLE");
+    } catch (err) {console.log("❌ Revisar permisos notificaciones:",err);}
   });
 }
+
+// 🛡️ RESPALDO INFALIBLE: MIENTRAS ALGUIEN ABRE/ENTRA A LA PÁGINA, REVISA Y AVISA SI ESTÁ POR EMPEZAR
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(!('Notification' in window)) return;
+  Notification.requestPermission();
+
+  setInterval(()=>{ // respaldo fuerte mientras esté abierta/uso
+    const ahora=new Date();
+    const dia=ahora.getDay(), hora=ahora.getHours();
+    if(dia>=1&&dia<=5){
+      if(hora===4) new Notification("🎤 AHORA: José Luis Lima",{body:"Los Grandes del Pueblo 📻",icon:ICONO});
+      if(hora===17) new Notification("🎤 AHORA: Juan Carlos Condori",{body:"Nada de lo Mismo 📻",icon:ICONO});
+    }
+  },60000); // revisa cada minuto MIENTRAS USAS/DEJAS EN SEGUNDO PLANO CORTO
+});
 
 // FECHA Y HORA EN VIVO
 function actualizarFechaHora(){
@@ -361,7 +318,7 @@ function actualizarFechaHora(){
 }
 setInterval(actualizarFechaHora,1000);actualizarFechaHora();
 
-setInterval(()=>{document.getElementById('conectados').textContent=Math.floor(Math.random()*51)+400;},5000);
+setInterval(()=>{document.getElementById('conectados').textContent=Math.floor(Math.random()*51)+600;},5000);
 
 function abrirYape(){document.getElementById('ventanaYape').classList.add('activo');document.body.style.overflow='hidden';}
 function cerrarYape(){document.getElementById('ventanaYape').classList.remove('activo');document.body.style.overflow='auto';}
