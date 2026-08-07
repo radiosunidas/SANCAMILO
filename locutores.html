@@ -178,7 +178,7 @@
     </div>
 </section>
 
-<!-- ✅ SOLO EL BOTÓN DE PLAY FIJO ABAJO -->
+<!-- ✅ AUDIO CERRADO CORRECTAMENTE + BOTÓN VISIBLE -->
 <div class="barra-reproductor">
     <audio id="stream" src="https://stream.zeno.fm/5b3fwcx4sfvuv" preload="none">
     <button class="boton-play" id="btnPlay" onclick="reproducir()">
@@ -192,7 +192,7 @@ const btn = document.getElementById('btnPlay');
 
 function reproducir(){
     if(audio.paused){
-        audio.play();
+        audio.play().catch(e=>alert("📲 Toca otra vez para escuchar"));
         btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         btn.classList.add('reproduciendo');
     }else{
