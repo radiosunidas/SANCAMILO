@@ -25,9 +25,9 @@ self.addEventListener('notificationclick', e => {
   e.waitUntil(
     clients.matchAll({type:'window'}).then(lista => {
       for(const ventana of lista){
-        if(ventana.url.includes('radiosunidas.github.io') && ventana.focus) return ventana.focus();
+        if(ventana.url.includes('radiosunidas.github.io/SANCAMILO/') && ventana.focus) return ventana.focus();
       }
-      return clients.openWindow('https://radiosunidas.github.io/eco/');
+      return clients.openWindow('https://radiosunidas.github.io/SANCAMILO/');
     })
   );
 });
