@@ -1,93 +1,81 @@
-﻿const CACHE_NOMBRE = 'radio-avisos-horarios-v7'; // CAMBIA NÚMERO AL ACTUALIZAR
-
-// 📅 HORARIOS: 8:00 AM hasta 7:00 PM, cada hora, LUNES A VIERNES
-const PROGRAMAS = [
-  { hora:  8, titulo: "☀️ ¡Buenos días!", mensaje: "Entra a Radios Unidas y empieza tu día con la mejor música 📻" },
-  { hora:  9, titulo: "🎵 Sigue la mejor selección", mensaje: "Radios Unidas: tu compañía favorita en cualquier momento" },
-  { hora: 10, titulo: "📻 Sintonízanos ahora", mensaje: "Música y alegría sin parar, entra y escucha" },
-  { hora: 11, titulo: "✨ Radios Unidas en vivo", mensaje: "Tu radio peruana llegando al mundo ¡Escúchanos!" },
-  { hora: 12, titulo: "🌤️ Mediodía con buena música", mensaje: "Relájate y disfruta lo mejor de Radios Unidas" },
-  { hora: 13, titulo: "🎶 Tu radio te acompaña", mensaje: "Entra a Radios Unidas, te estamos esperando" },
-  { hora: 14, titulo: "📻 Sigue sintonizado", mensaje: "La mejor programación sigue al aire, entra ya" },
-  { hora: 15, titulo: "☀️ Tarde con Radios Unidas", mensaje: "Música variada y momentos especiales para ti" },
-  { hora: 16, titulo: "🎵 No te pierdas nada", mensaje: "Entra a Radios Unidas y disfruta nuestra programación" },
-  { hora: 17, titulo: "🎤 AHORA EN VIVO: Juan Carlos", mensaje: "Programa: Nada de lo Mismo | 5:00 PM a 7:00 PM ¡Acompáñanos!" },
-  { hora: 18, titulo: "🌆 Cae la tarde con nosotros", mensaje: "Radios Unidas: tu música, tu voz, tu radio 📻" },
-  { hora: 19, titulo: "🌙 Cierra tu día con nosotros", mensaje: "Entra a Radios Unidas y disfruta hasta el final" }
-];
-
+﻿const CACHE_NOMBRE = 'radio-avisos-v8'; // CAMBIA NÚMERO AL ACTUALIZAR
 const ICONO = "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png";
-const DIAS_LABORABLES = [1,2,3,4,5]; // Lunes a Viernes
+const RUTA_RADIO = "https://radiosunidas.github.io/SANCAMILO/";
 
-// 🎯 AL TOCAR EL AVISO: ABRE TU RADIO DIRECTO
+// 🕒 AVISOS CADA HORA: 8 AM A 7 PM | LUNES A VIERNES
+const AVISOS = [
+  {h:8,  t:'☀️ ¡Buenos días!', m:'Entra a Radios Unidas y empieza tu día con la mejor música 📻'},
+  {h:9,  t:'🎵 Sigue la mejor selección', m:'Tu radio te acompaña siempre, entra ya'},
+  {h:10, t:'📻 Sintonízanos ahora', m:'Música y alegría sin parar'},
+  {h:11, t:'✨ Radios Unidas en vivo', m:'Tu voz peruana para el mundo'},
+  {h:12, t:'🌤️ Mediodía con buena música', m:'Disfruta lo mejor de nuestra programación'},
+  {h:13, t:'🎶 Tu radio te espera', m:'Entra y escucha en cualquier momento'},
+  {h:14, t:'📻 Sigue sintonizado', m:'Todo listo para ti en Radios Unidas'},
+  {h:15, t:'☀️ Tarde con nosotros', m:'Música variada y buenos momentos'},
+  {h:16, t:'🎵 No te pierdas nada', m:'Sigue conectado a tu radio'},
+  {h:17, t:'🎤 AHORA EN VIVO: Juan Carlos', m:'Programa Nada de lo Mismo | 5 a 7 PM ¡Acompáñanos!'},
+  {h:18, t:'🌆 Cae la tarde con nosotros', m:'Radios Unidas: tu música, tu radio'},
+  {h:19, t:'🌙 Cierra tu día aquí', m:'Entra y disfruta hasta el final 📻'}
+];
+const DIAS_LABORABLES = [1,2,3,4,5];
+
+// 🎯 AL TOCAR AVISO: ABRE LA RADIO EN SANCAMILO
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  e.waitUntil(
-    clients.matchAll({type:'window'}).then(lista => {
-      for(const ventana of lista){
-        if(ventana.url.includes('radiosunidas.github.io') && ventana.focus) return ventana.focus();
-      }
-      return clients.openWindow('https://radiosunidas.github.io/SANCAMILO/');
-    })
-  );
+  e.waitUntil(clients.openWindow(RUTA_RADIO));
 });
 
-// ⏰ REVISAR HORA Y LANZAR AVISO SI TOCA
-function revisarHorarios(){
+// ⏰ FUNCIÓN PRINCIPAL CORREGIDA (sin localStorage que no funciona aquí)
+function revisar(){
   const ahora = new Date();
   const dia = ahora.getDay();
   const hora = ahora.getHours();
-  const clave = `aviso_${ahora.toDateString()}_${hora}`; // evita repetir en la misma hora
 
-  if(!DIAS_LABORABLES.includes(dia)) return; // NO avisa sábados ni domingos
+  // Solo Lunes a Viernes
+  if(!DIAS_LABORABLES.includes(dia)) return;
 
-  const yaAvisado = self.localStorage ? self.localStorage.getItem(clave) : null;
-  if(yaAvisado) return;
-
-  const programa = PROGRAMAS.find(p => p.hora === hora);
-  if(programa){
-    self.registration.showNotification(programa.titulo, {
-      body: programa.mensaje,
+  const aviso = AVISOS.find(a => a.h === hora);
+  if(aviso){
+    self.registration.showNotification(aviso.t, {
+      body: aviso.m,
       icon: ICONO,
       badge: ICONO,
-      tag: `aviso-hora-${hora}`,
-      renotify: false,
-      silent: false,          // 🔊 CON SONIDO
-      requireInteraction: true, // 📲 SE QUEDA EN PANTALLA
+      tag: `aviso_hora_${hora}_${ahora.toDateString()}`, // evita repetir automáticamente
+      silent: false,          // 🔊 CON SONIDO FUERTE
+      requireInteraction: true, // 📲 SE QUEDA HASTA QUE LO CIERRES
       priority: 'high'         // ⚡ MÁXIMA PRIORIDAD
     });
-    if(self.localStorage) self.localStorage.setItem(clave, 'enviado');
   }
 }
 
-// 🔁 REVISIÓN AUTOMÁTICA
+// 🔁 REVISIONES
 self.addEventListener('periodicsync', e => {
-  if(e.tag === 'revisar-programas') e.waitUntil(revisarHorarios());
+  if(e.tag === 'revisar-programas') revisar();
 });
-
 self.addEventListener('message', e => {
-  if(e.data === 'revisarAhora') revisarHorarios();
+  if(e.data === 'revisarAhora') revisar();
 });
 
-// 💾 INSTALAR Y ACTIVAR
+// 💾 INSTALACIÓN
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NOMBRE).then(cache => cache.addAll(['./','./index.html','./manifest.json',ICONO]))
+    caches.open(CACHE_NOMBRE).then(c => c.addAll(['./','./index.html','./manifest.json','./locutores.html',ICONO]))
   );
   self.skipWaiting();
 });
-
 self.addEventListener('activate', async e => {
-  if ('periodicSync' in self.registration) {
-    try {
-      await self.registration.periodicSync.register('revisar-programas', { minInterval: 60 * 60 * 1000 });
-      console.log("✅ AVISOS POR HORA ACTIVADOS");
-    } catch(err) { console.log("⚠️ Revisión limitada:", err); }
+  if('periodicSync' in self.registration){
+    try{
+      await self.registration.periodicSync.register('revisar-programas', { minInterval: 3600000 });
+      console.log("✅ SISTEMA DE AVISOS CARGADO EN SANCAMILO");
+    }catch(err){
+      console.log("⚠️ Revisión automática limitada:", err);
+    }
   }
   e.waitUntil(clients.claim());
 });
 
-// 📥 CARGA ARCHIVOS RÁPIDO
+// 📥 CARGA
 self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
