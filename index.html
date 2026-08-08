@@ -27,7 +27,7 @@
     <meta name="apple-mobile-web-app-title" content="Radios Unidas">
     <link rel="icon" type="image/png" sizes="192x192" href="https://radiosunidas.github.io/SANCAMILO/imagen/logo.png">
 
-    <link relpreconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -56,14 +56,11 @@
     .lista-opciones a{padding:10px 14px;color:var(--texto-claro);display:flex;align-items:center;gap:8px;font-weight:500;transition:0.15s;font-size:0.85rem;text-decoration:none}
     .lista-opciones a:hover{background:rgba(0,243,255,0.1);color:var(--cyan-neon)}
 
-    /* ✅ ORDEN Y DISTRIBUCIÓN MEJORADA - MÁS ANCHO Y ALTO EN PC */
     .contenedor-padre{max-width:1400px;margin:15px auto;padding:0 12px;gap:25px;width:100%;}
-    /* 🖥️ PC: Ajustado para que locutores sea amplio y alto */
     @media(min-width:900px){
-        .contenedor-padre{display:grid;grid-template-columns:1.2fr 1.1fr;gap:25px;margin:20px auto;} /* Más ancho la columna de locutores */
+        .contenedor-padre{display:grid;grid-template-columns:1.2fr 1.1fr;gap:25px;margin:20px auto;}
         .bloque-izquierdo{display:flex;flex-direction:column;gap:15px;}
     }
-    /* 📱 CELULAR: TODO EN COLUMNA UNO TRAS OTRO */
     @media(max-width:899px){
         .contenedor-padre{display:flex;flex-direction:column;gap:15px;}
     }
@@ -75,14 +72,12 @@
     @keyframes parpadeo{0%,100%{opacity:1}50%{opacity:0.2}}
     .contador-top{display:flex;align-items:center;gap:5px;background:rgba(37,211,102,0.1);padding:4px 8px;border-radius:15px;font-size:0.8rem;border:1px solid rgba(37,211,102,0.3)}
     .punto-verde{width:9px;height:9px;background:var(--activo);border-radius:50%;box-shadow:0 0 8px var(--activo)}
-    .fecha-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
-    .hora-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
+    .fecha-actual, .hora-actual{font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--dorado);font-weight:600}
 
     .contenedor-iframe{position:relative;width:100%;height:340px;margin-top:8px;border-radius:12px;overflow:hidden;border:2px solid var(--acento);box-shadow:0 0 15px rgba(83,1,46,0.4)}
     @media(min-width:768px){.contenedor-iframe{height:420px}}
     .iframe-radio{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
 
-    /* ✅ BLOQUE DE APOYOS Y CONTACTO DEBAJO DEL REPRODUCTOR */
     .bloque-apoyos{background:rgba(255,204,102,0.07);border-radius:16px;padding:15px;border:2px solid var(--dorado);display:flex;flex-direction:column;gap:12px;}
     .tit-yape{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--dorado);font-weight:700;font-size:0.95rem;font-family:'Orbitron',sans-serif}
     .grupo-aportes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
@@ -99,10 +94,9 @@
     }
     .btn-whatsapp-locutor:hover{background:#20bd5a;transform:scale(1.02);box-shadow:0 0 18px rgba(37,211,102,0.6);}
 
-    /* ✅ SECCIÓN LOCUTORES: MÁS ALTA, AMPLIA Y LLENA ESPACIO */
-    .seccion-locutores{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--dorado);box-shadow:0 0 15px rgba(255,204,102,0.2);min-height:600px;height:clamp(600px,85vh,680px);width:100%;} /* 📏 AUMENTADA ALTURA Y ANCHO */
+    .seccion-locutores{background:var(--panel);border-radius:16px;padding:12px;border:2px solid var(--dorado);box-shadow:0 0 15px rgba(255,204,102,0.2);min-height:600px;height:clamp(600px,85vh,680px);width:100%;}
     .tit-locutores{font-family:'Orbitron',sans-serif;color:var(--dorado);font-weight:700;margin-bottom:8px;text-align:center;font-size:1.1rem}
-    .iframe-locutores{width:100%;height:calc(100% - 40px);border:none;border-radius:8px;} /* 🖥️ LLENA TODO EL ANCHO DISPONIBLE */
+    .iframe-locutores{width:100%;height:calc(100% - 40px);border:none;border-radius:8px;}
 
     .ventana-yape, .ventana-paypal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:15px;gap:12px;overflow-y:auto}
     .ventana-yape.activo, .ventana-paypal.activo{display:flex}
@@ -171,7 +165,6 @@
 </nav>
 
 <div class="contenedor-padre">
-    <!-- ✅ BLOQUE IZQUIERDO: Reproductor + Apoyos justo debajo -->
     <div class="bloque-izquierdo">
         <div class="reproductor">
             <div class="cabecera-radio">
@@ -185,7 +178,6 @@
             </div>
         </div>
 
-        <!-- ✅ AQUÍ: YAPE, PAYPAL Y CONTACTO JUSTO DEBAJO -->
         <div class="bloque-apoyos">
             <div class="tit-yape">💛 ¡AYÚDANOS A SEGUIR AL AIRE!</div>
             <div class="grupo-aportes">
@@ -198,7 +190,6 @@
         </div>
     </div>
 
-    <!-- ✅ AL LADO EN PC: MÁS ANCHO Y MUCHO MÁS LARGO/ALTO, COMO PEDISTE -->
     <div class="seccion-locutores" id="locutores">
         <h3 class="tit-locutores"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES Y COLABORADORES</h3>
         <iframe class="iframe-locutores" src="locutores.html" title="Locutores y horarios completos" loading="lazy"></iframe>
@@ -261,6 +252,8 @@
 </div>
 
 <script>
+const ICONO = "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png";
+
 // 🔒 SEGURIDAD
 function bloquearTeclado(e){
     if ((e.ctrlKey && (e.keyCode==67 || e.keyCode==85 || e.keyCode==83 || e.keyCode==80)) || e.keyCode==123 || (e.shiftKey && e.keyCode==73)){
@@ -272,41 +265,25 @@ document.addEventListener('contextmenu',e=>{e.preventDefault();alert("🔒 No se
 
 function irALocutores(){document.getElementById('locutores').scrollIntoView({behavior:'smooth'});}
 
-// ==============================================
-// 🔔 SISTEMA DE RECORDATORIOS DE PROGRAMAS
-// ==============================================
-// 📲 REGISTRO COMPLETO + PERMISOS ESPECIALES
+// 📲 REGISTRO EXCLUSIVO A TU sw.js EXISTENTE
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const registro = await navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'});
-      await registro.update(); // CARGA VERSIÓN NUEVA AL INSTANTE
+      // ✅ LLAMA DIRECTAMENTE A TU ARCHIVO, NO CREA NADA NUEVO
+      const registro = await navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' });
+      await registro.update();
+      console.log("✅ CONECTADO EXACTAMENTE A TU sw.js");
 
-      // 📢 PEDIR PERMISO EXTRA: REVISIONES PERIÓDICAS (CLAVE PARA FUNCIONAR SIEMPRE)
       if ('periodicSync' in navigator.serviceWorker) {
         const estado = await navigator.permissions.query({name:'periodic-background-sync'});
-        if(estado.state === 'granted') console.log("✅ Permiso fondo máximo activado");
-        else alert("💡 CONSEJO: En ajustes de tu celular: Permitir notificaciones + NO ahorro batería para esta App 📲");
+        if(estado.state === 'granted') console.log("✅ Permiso de fondo activo");
       }
-      console.log("✅ SISTEMA DE AVISOS LISTO Y ESTABLE");
-    } catch (err) {console.log("❌ Revisar permisos notificaciones:",err);}
+    } catch (err) {
+      console.log("❌ Revisa que sw.js esté en SANCAMILO:", err);
+      alert("⚠️ Asegúrate de subir el archivo sw.js en la carpeta SANCAMILO");
+    }
   });
 }
-
-// 🛡️ RESPALDO INFALIBLE: MIENTRAS ALGUIEN ABRE/ENTRA A LA PÁGINA, REVISA Y AVISA SI ESTÁ POR EMPEZAR
-document.addEventListener('DOMContentLoaded', ()=>{
-  if(!('Notification' in window)) return;
-  Notification.requestPermission();
-
-  setInterval(()=>{ // respaldo fuerte mientras esté abierta/uso
-    const ahora=new Date();
-    const dia=ahora.getDay(), hora=ahora.getHours();
-    if(dia>=1&&dia<=5){
-      if(hora===4) new Notification("🎤 AHORA: José Luis Lima",{body:"Los Grandes del Pueblo 📻",icon:ICONO});
-      if(hora===17) new Notification("🎤 AHORA: Juan Carlos Condori",{body:"Nada de lo Mismo 📻",icon:ICONO});
-    }
-  },60000); // revisa cada minuto MIENTRAS USAS/DEJAS EN SEGUNDO PLANO CORTO
-});
 
 // FECHA Y HORA EN VIVO
 function actualizarFechaHora(){
@@ -328,7 +305,7 @@ function cerrarPaypal(){document.getElementById('ventanaPaypal').classList.remov
 document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
 document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
 
-// 🤖 TU ASISTENTE INTELIGENTE
+// 🤖 ASISTENTE INTELIGENTE
 const API_KEY = "gsk_TYkJthMNpXBOKjvCYjkVWGdyb3FYux8XNhmHxztfvlvz39MzfMT";
 const cajaMsjIA = document.getElementById('cajaMensajesIA');
 
@@ -351,14 +328,14 @@ async function obtenerRespuestaIA(pregunta){
         const respuesta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({contents:[{parts:[{text:`Responde SIEMPRE amable, corto, claro, alegre, como asistente OFICIAL DE RADIOS UNIDAS PARA EL MUNDO 📻, habla como peruano, palabras sencillas y cercanas: ${pregunta}`}]}]})
+            body:JSON.stringify({contents:[{parts:[{text:`Responde como asistente OFICIAL DE RADIOS UNIDAS, amable, corto y en español peruano: ${pregunta}`}]}]})
         });
 
         const datos=await respuesta.json();
-        const textoRespuesta = datos.candidates?.[0]?.content?.parts?.[0]?.text || 'Disculpa amigo, estamos ajustando un poquito los sistemas, vuelve a intentar en un momento 📻 Gracias por tu paciencia.';
+        const textoRespuesta = datos.candidates?.[0]?.content?.parts?.[0]?.text || 'Ajustes técnicos por ahora, vuelve pronto 📻';
         agregarMensaje(textoRespuesta);
     }catch(err){
-        agregarMensaje('🔧 Pequeño ajuste técnico por ahora, seguimos listos para escucharte y servirte siempre 📻 Radios Unidas contigo.');
+        agregarMensaje('🔧 Un momento, ajustando sistemas 📻');
     }finally{
         document.getElementById('enviarPregunta').disabled=false;
         document.getElementById('enviarPregunta').textContent='Enviar';
@@ -377,7 +354,7 @@ document.getElementById('textoPregunta').addEventListener('keydown',e=>{if(e.key
 // INSTALACIÓN PWA
 let instalacionPendiente=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e;setTimeout(()=>{if(instalacionPendiente)document.getElementById('pwa-banner').style.display='flex';},2500);});
-document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendiente){alert("📱 En Android: abre menú navegador > Instalar aplicación");return;}instalacionPendiente.prompt();const res=await instalacionPendiente.userChoice;if(res.outcome==='accepted')document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
+document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendiente){alert("📱 En Android: Menú navegador > Instalar aplicación");return;}instalacionPendiente.prompt();const res=await instalacionPendiente.userChoice;if(res.outcome==='accepted')document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 document.getElementById('btn-cancelar').onclick=()=>{document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 </script>
 
