@@ -78,6 +78,25 @@
     @media(min-width:768px){.contenedor-iframe{height:420px}}
     .iframe-radio{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
 
+    /* 🔘 BOTÓN ENLAZAR RADIOS UNIDAS */
+    .boton-enlazados{
+        display:inline-flex;align-items:center;justify-content:center;gap:8px;
+        margin-top:12px;padding:10px 20px;border-radius:30px;border:2px solid var(--dorado);
+        background:linear-gradient(135deg,rgba(83,1,46,0.8),rgba(122,2,68,0.9));
+        color:var(--dorado);font-family:'Orbitron',sans-serif;font-weight:700;font-size:0.95rem;
+        cursor:pointer;transition:all 0.3s ease;animation:resalteIntermitente 2s infinite;
+        border:none;
+    }
+    .boton-enlazados:hover{
+        transform:scale(1.08);box-shadow:0 0 25px rgba(255,204,102,0.6);
+        background:linear-gradient(135deg,rgba(100,2,55,0.9),rgba(150,5,80,1));
+        animation:none;
+    }
+    @keyframes resalteIntermitente{
+        0%,100%{box-shadow:0 0 8px rgba(255,204,102,0.3);border-color:rgba(255,204,102,0.6);}
+        50%{box-shadow:0 0 20px rgba(255,204,102,0.7);border-color:rgba(255,204,102,1);}
+    }
+
     .bloque-apoyos{background:rgba(255,204,102,0.07);border-radius:16px;padding:15px;border:2px solid var(--dorado);display:flex;flex-direction:column;gap:12px;}
     .tit-yape{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--dorado);font-weight:700;font-size:0.95rem;font-family:'Orbitron',sans-serif}
     .grupo-aportes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
@@ -156,7 +175,7 @@
             <button class="boton-menu" id="btnDesplegar">MENÚ <i class="fa-solid fa-chevron-down"></i></button>
             <div class="lista-opciones" id="menuDesplegable">
                 <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="#locutores" onclick="irALocutores();return false;"><i class="fa-solid fa-calendar-days"></i> Programación</a>
+                <a href="#locutores" onclick="cargarLocutores();return false;"><i class="fa-solid fa-calendar-days"></i> Programación</a>
                 <a href="noticias.html"><i class="fa-solid fa-newspaper"></i> Noticias</a>
                 <a href="contacto.html"><i class="fa-solid fa-envelope"></i> Contacto</a>
             </div>
@@ -176,6 +195,10 @@
             <div class="contenedor-iframe">
                 <iframe class="iframe-radio" src="https://radiosunidas.github.io/play/" allow="autoplay" allowfullscreen loading="lazy"></iframe>
             </div>
+            <!-- 🔘 BOTÓN ENLAZAR RADIOS UNIDAS — CARGA EN EL IFRAME DE LOCUTORES -->
+            <button class="boton-enlazados" onclick="cargarEnlazados()">
+                <i class="fa-solid fa-link"></i> ENLAZAR RADIOS UNIDAS
+            </button>
         </div>
 
         <div class="bloque-apoyos">
@@ -191,8 +214,8 @@
     </div>
 
     <div class="seccion-locutores" id="locutores">
-        <h3 class="tit-locutores"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES Y COLABORADORES</h3>
-        <iframe class="iframe-locutores" src="locutores.html" title="Locutores y horarios completos" loading="lazy"></iframe>
+        <h3 class="tit-locutores" id="titulo-iframe"><i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES Y COLABORADORES</h3>
+        <iframe class="iframe-locutores" id="iframePrincipal" src="locutores.html" title="Locutores y horarios completos" loading="lazy"></iframe>
     </div>
 </div>
 
@@ -253,6 +276,8 @@
 
 <script>
 const ICONO = "https://radiosunidas.github.io/SANCAMILO/imagen/logo.png";
+const iframePrincipal = document.getElementById('iframePrincipal');
+const tituloIframe = document.getElementById('titulo-iframe');
 
 // 🔒 SEGURIDAD
 function bloquearTeclado(e){
@@ -263,26 +288,72 @@ function bloquearTeclado(e){
 }
 document.addEventListener('contextmenu',e=>{e.preventDefault();alert("🔒 No se permite copiar ni extraer contenido");});
 
-function irALocutores(){document.getElementById('locutores').scrollIntoView({behavior:'smooth'});}
+// 📂 CARGAR ENLAZADOS EN EL IFRAME — LO QUE PEDISTE
+function cargarEnlazados(){
+    iframePrincipal.src = "enlazados.html";
+    tituloIframe.innerHTML = '<i class="fa-solid fa-link"></i> EMISORAS ENLAZADAS A RADIOS UNIDAS';
+    document.getElementById('locutores').scrollIntoView({behavior:'smooth'});
+}
 
-// 📲 REGISTRO EXCLUSIVO A TU sw.js EXISTENTE
+function cargarLocutores(){
+    iframePrincipal.src = "locutores.html";
+    tituloIframe.innerHTML = '<i class="fa-solid fa-microphone"></i> NUESTROS LOCUTORES Y COLABORADORES';
+    document.getElementById('locutores').scrollIntoView({behavior:'smooth'});
+}
+
+// 📲 REGISTRO sw.js + 🔔 NOTIFICACIONES CORREGIDAS
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      // ✅ LLAMA DIRECTAMENTE A TU ARCHIVO, NO CREA NADA NUEVO
       const registro = await navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' });
       await registro.update();
-      console.log("✅ CONECTADO EXACTAMENTE A TU sw.js");
+      console.log("✅ sw.js conectado");
 
-      if ('periodicSync' in navigator.serviceWorker) {
-        const estado = await navigator.permissions.query({name:'periodic-background-sync'});
-        if(estado.state === 'granted') console.log("✅ Permiso de fondo activo");
+      // 🔔 NOTIFICACIONES — CORREGIDO, MÁS COMPATIBLE
+      if ('Notification' in window) {
+          if (Notification.permission === 'default') {
+              const permiso = await Notification.requestPermission();
+              if (permiso === 'granted') {
+                  console.log("✅ Notificaciones activadas");
+                  mostrarNotificacionBienvenida();
+              } else {
+                  console.log("ℹ️ Permiso de notificaciones denegado por el usuario");
+              }
+          } else if (Notification.permission === 'granted') {
+              console.log("✅ Notificaciones ya activadas");
+          }
       }
     } catch (err) {
-      console.log("❌ Revisa que sw.js esté en SANCAMILO:", err);
-      alert("⚠️ Asegúrate de subir el archivo sw.js en la carpeta SANCAMILO");
+      console.log("⚠️ sw.js:", err);
     }
   });
+}
+
+// 📢 FUNCIÓN DE NOTIFICACIÓN SEPARADA Y MÁS COMPATIBLE
+function mostrarNotificacionBienvenida() {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    
+    // Esperar un poco para que no bloquee la carga
+    setTimeout(() => {
+        try {
+            const notificacion = new Notification("📻 RADIOS UNIDAS PARA EL MUNDO", {
+                body: "¡Bienvenido! Estamos transmitiendo en vivo las 24 horas 🎧",
+                icon: ICONO,
+                badge: ICONO,
+                tag: "bienvenida-radios-unidas",
+                silent: false
+            });
+            // Cerrar automáticamente después de 8 segundos
+            setTimeout(() => notificacion.close(), 8000);
+            // Al hacer clic, abrir la página
+            notificacion.onclick = () => {
+                window.focus();
+                notificacion.close();
+            };
+        } catch (e) {
+            console.log("⚠️ No se pudo mostrar notificación:", e);
+        }
+    }, 2000);
 }
 
 // FECHA Y HORA EN VIVO
@@ -305,12 +376,20 @@ function cerrarPaypal(){document.getElementById('ventanaPaypal').classList.remov
 document.getElementById('btnDesplegar').onclick=e=>{e.stopPropagation();document.getElementById('menuDesplegable').classList.toggle('mostrar');};
 document.onclick=()=>document.getElementById('menuDesplegable').classList.remove('mostrar');
 
-// 🤖 ASISTENTE INTELIGENTE
-const API_KEY = "gsk_TYkJthMNpXBOKjvCYjkVWGdyb3FYux8XNhmHxztfvlvz39MzfMT";
+// 🤖 ASISTENTE VIRTUAL — SIN API, SIEMPRE FUNCIONA
 const cajaMsjIA = document.getElementById('cajaMensajesIA');
 
-document.getElementById('abrirChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.toggle('abierto');
-document.getElementById('cerrarChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.remove('abierto');
+const respuestas = {
+    horario: "📻 Transmitimos LAS 24 HORAS del día, los 365 días del año, sin interrupción. ¡Siempre al aire! 🎧",
+    locutores: "🎙️ Mira la sección de Locutores aquí abajo con todos los nombres y horarios 👇",
+    escuchar: "🎧 ¡Ya estás escuchando! Si no suena, dale al play en el reproductor. Transmisión 24/7 📡",
+    señal: "📡 Nuestra señal llega a todo el Perú y el mundo. Emisoras de Puerto Maldonado, Omate, Arequipa, Sicuani y más se unen a nuestra red 🌍",
+    contacto: "📞 WhatsApp: +51 930 282 895 o pulsa 'Chatear con el locutor' 💬",
+    enlazados: "🔗 Pulsa el botón 'Enlazar Radios Unidas' para ver todas nuestras emisoras asociadas 📻",
+    ayuda: "😊 Pregúntame sobre horarios, locutores, señal, contacto o emisoras asociadas. Estoy aquí para ayudarte 📻",
+    hola: "👋 ¡Hola! Bienvenido a Radios Unidas. ¿En qué te puedo ayudar hoy? 😊",
+    default: "📻 Gracias por escribir. Estamos en vivo las 24 horas. Dime qué necesitas y te respondo al instante. ¡Que disfrutes la señal! 🎧"
+};
 
 function agregarMensaje(texto, esUsuario=false){
     const div=document.createElement('div');
@@ -320,41 +399,43 @@ function agregarMensaje(texto, esUsuario=false){
     cajaMsjIA.scrollTop=cajaMsjIA.scrollHeight;
 }
 
-async function obtenerRespuestaIA(pregunta){
-    try{
-        const boton=document.getElementById('enviarPregunta');
-        boton.disabled=true;boton.textContent='Escribiendo...';
-
-        const respuesta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({contents:[{parts:[{text:`Responde como asistente OFICIAL DE RADIOS UNIDAS, amable, corto y en español peruano: ${pregunta}`}]}]})
-        });
-
-        const datos=await respuesta.json();
-        const textoRespuesta = datos.candidates?.[0]?.content?.parts?.[0]?.text || 'Ajustes técnicos por ahora, vuelve pronto 📻';
-        agregarMensaje(textoRespuesta);
-    }catch(err){
-        agregarMensaje('🔧 Un momento, ajustando sistemas 📻');
-    }finally{
-        document.getElementById('enviarPregunta').disabled=false;
-        document.getElementById('enviarPregunta').textContent='Enviar';
-    }
+function obtenerRespuestaLocal(pregunta){
+    const p = pregunta.toLowerCase();
+    if(p.includes('hola') || p.includes('buenos días') || p.includes('buenas')) return respuestas.hola;
+    if(p.includes('horario') || p.includes('hora') || p.includes('cuándo')) return respuestas.horario;
+    if(p.includes('locutor') || p.includes('quién habla') || p.includes('programa')) return respuestas.locutores;
+    if(p.includes('escuchar') || p.includes('no suena') || p.includes('audio')) return respuestas.escuchar;
+    if(p.includes('señal') || p.includes('cobertura') || p.includes('llegar')) return respuestas.señal;
+    if(p.includes('contacto') || p.includes('llamar') || p.includes('whatsapp') || p.includes('teléfono')) return respuestas.contacto;
+    if(p.includes('enlazado') || p.includes('emisora') || p.includes('unida')) return respuestas.enlazados;
+    if(p.includes('ayuda') || p.includes('quién eres')) return respuestas.ayuda;
+    return respuestas.default;
 }
+
+document.getElementById('abrirChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.toggle('abierto');
+document.getElementById('cerrarChatIA').onclick=()=>document.getElementById('ventanaChatIA').classList.remove('abierto');
 
 document.getElementById('enviarPregunta').onclick=()=>{
     const texto=document.getElementById('textoPregunta').value.trim();
     if(!texto)return;
-    agregarMensaje(texto,true);
+    agregarMensaje(texto, true);
     document.getElementById('textoPregunta').value='';
-    obtenerRespuestaIA(texto);
+    const boton = document.getElementById('enviarPregunta');
+    boton.disabled = true;
+    boton.textContent = 'Escribiendo...';
+    setTimeout(() => {
+        agregarMensaje(obtenerRespuestaLocal(texto));
+        boton.disabled = false;
+        boton.textContent = 'Enviar';
+    }, 700);
 };
+
 document.getElementById('textoPregunta').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('enviarPregunta').click();});
 
-// INSTALACIÓN PWA
+// 📲 INSTALACIÓN PWA
 let instalacionPendiente=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instalacionPendiente=e;setTimeout(()=>{if(instalacionPendiente)document.getElementById('pwa-banner').style.display='flex';},2500);});
-document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendiente){alert("📱 En Android: Menú navegador > Instalar aplicación");return;}instalacionPendiente.prompt();const res=await instalacionPendiente.userChoice;if(res.outcome==='accepted')document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
+document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendiente){alert("📱 En Android: Menú > Instalar aplicación");return;}instalacionPendiente.prompt();const res=await instalacionPendiente.userChoice;if(res.outcome==='accepted')document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 document.getElementById('btn-cancelar').onclick=()=>{document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 </script>
 
