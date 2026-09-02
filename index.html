@@ -439,5 +439,145 @@ document.getElementById('btn-instalar').onclick=async()=>{if(!instalacionPendien
 document.getElementById('btn-cancelar').onclick=()=>{document.getElementById('pwa-banner').style.display='none';instalacionPendiente=null;};
 </script>
 
+<!-- 🕒 JUAN CARLOS CONDORI — TRANSMISIÓN | 5:00 PM a 10:00 PM -->
+<style>
+/* Estilos para la ventana de TikTok */
+#tiktok-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+#tiktok-modal.activo { display: flex; }
+#tiktok-modal-box {
+    background: #000;
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 420px;
+    width: 100%;
+    max-height: 90vh;
+    position: relative;
+}
+#tiktok-cerrar {
+    position: absolute;
+    top: -12px; right: -12px;
+    background: #ff0050;
+    color: white;
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+#tiktok-modal-box iframe {
+    width: 100%;
+    height: 650px;
+    border-radius: 8px;
+    border: none;
+}
+#tiktok-boton {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a2e;
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 2px solid #ff0050;
+    display: none;
+}
+#tiktok-boton h3 {
+    color: #ff0050;
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    animation: parpadeo 1s infinite;
+}
+#tiktok-boton button {
+    padding: 15px 35px;
+    background: #ff0050;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#tiktok-boton button:hover {
+    transform: scale(1.05);
+    background: #e60047;
+}
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+</style>
+
+<!-- 🔘 BOTÓN — Aparece de 5:00 PM a 10:00 PM -->
+<div id="tiktok-boton">
+    <h3>🔴 EN VIVO — JUAN CARLOS CONDORI</h3>
+    <p style="color:#ccc; margin: 0 0 15px 0;">Todos los días desde las 5:00 p.m.</p>
+    <button onclick="abrirTikTok()">📲 VER TRANSMISIÓN EN VIVO</button>
+</div>
+
+<!-- 📺 VENTANA DENTRO DE TU PÁGINA -->
+<div id="tiktok-modal">
+    <div id="tiktok-modal-box">
+        <button id="tiktok-cerrar" onclick="cerrarTikTok()">×</button>
+        <iframe id="tiktok-iframe" src="" allowfullscreen></iframe>
+        <p style="color:#aaa; text-align:center; margin-top:10px; font-size:13px;">
+            Si no ves el video → 
+            <a href="https://www.tiktok.com/@juancarloscondori357/live" target="_blank" style="color:#ff0050;">
+                Abrir en TikTok
+            </a>
+        </p>
+    </div>
+</div>
+
+<script>
+// 🕒 HORARIO: 17:00 (5 PM) a 22:00 (10 PM)
+function verificarHorario() {
+    const hora = new Date().getHours();
+    const boton = document.getElementById('tiktok-boton');
+    // Muestra desde las 17 hasta las 22 → 5 PM a 10 PM
+    boton.style.display = (hora >= 17 && hora < 22) ? 'block' : 'none';
+}
+
+// 📺 ABRIR VENTANA
+function abrirTikTok() {
+    const modal = document.getElementById('tiktok-modal');
+    const iframe = document.getElementById('tiktok-iframe');
+    iframe.src = "https://www.tiktok.com/@juancarloscondori357/live";
+    modal.classList.add('activo');
+    document.body.style.overflow = 'hidden';
+}
+
+// ❌ CERRAR VENTANA
+function cerrarTikTok() {
+    const modal = document.getElementById('tiktok-modal');
+    const iframe = document.getElementById('tiktok-iframe');
+    modal.classList.remove('activo');
+    iframe.src = "";
+    document.body.style.overflow = 'auto';
+}
+
+// ⏱️ REVISAR HORARIO AL CARGAR Y CADA MINUTO
+verificarHorario();
+setInterval(verificarHorario, 60000);
+
+// Cerrar al tocar fuera de la ventana
+document.getElementById('tiktok-modal').addEventListener('click', function(e) {
+    if (e.target === this) cerrarTikTok();
+});
+</script>
+
+
+
 </body>
 </html>
