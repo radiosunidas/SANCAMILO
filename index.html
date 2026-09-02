@@ -577,7 +577,73 @@ document.getElementById('tiktok-modal').addEventListener('click', function(e) {
 });
 </script>
 
+<!-- 🕒 JUAN CARLOS CONDORI — TRANSMISIÓN | 5:00 PM a 10:00 PM -->
+<style>
+#tiktok-boton {
+    text-align: center;
+    padding: 25px 20px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 2px solid #ff0050;
+    display: none;
+    box-shadow: 0 0 15px rgba(255, 0, 80, 0.2);
+}
+#tiktok-boton h3 {
+    color: #ff0050;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    animation: parpadeo 1s infinite;
+}
+#tiktok-boton p {
+    color: #ccc;
+    margin: 0 0 18px 0;
+    font-size: 15px;
+}
+#tiktok-boton a {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #ff0050;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+#tiktok-boton a:hover {
+    background: #e60047;
+    transform: scale(1.05);
+}
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+</style>
 
+<!-- 🔘 BOTÓN — Aparece de 5:00 PM a 10:00 PM -->
+<div id="tiktok-boton">
+    <h3>🔴 EN VIVO — JUAN CARLOS CONDORI</h3>
+    <p>Todos los días desde las 5:00 p.m.</p>
+    <a href="https://www.tiktok.com/@juancarloscondori357/live" target="_blank">
+        📲 VER TRANSMISIÓN EN TIKTOK
+    </a>
+    <p style="color:#999; margin-top:15px; font-size:13px;">
+        Se abre en ventana nueva
+    </p>
+</div>
+
+<script>
+// 🕒 HORARIO: 17:00 (5 PM) a 22:00 (10 PM)
+function verificarHorario() {
+    const hora = new Date().getHours();
+    const boton = document.getElementById('tiktok-boton');
+    boton.style.display = (hora >= 17 && hora < 22) ? 'block' : 'none';
+}
+verificarHorario();
+setInterval(verificarHorario, 60000);
+</script>
 
 </body>
 </html>
