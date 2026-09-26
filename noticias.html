@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias — Radios Unidas para el Perú y el Mundo</title>
+    
+    <!-- Estilos -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        
+        body {
+            background-color: #e0e0e0; /* Fondo gris suave */
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabecera */
+        .cabecera {
+            background: linear-gradient(135deg, #0a1647, #1a2a7a);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .cabecera h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .cabecera p { opacity: 0.9; font-size: 1rem; }
+        .fecha-hoy {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        /* Tarjetas de noticias */
+        .cuadro-noticia {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            border-left: 5px solid;
+            transition: transform 0.3s ease;
+        }
+
+        .cuadro-noticia:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Colores por categoría */
+        .nacional { border-color: #d32f2f; }
+        .regional { border-color: #f57c00; }
+        .local    { border-color: #388e3c; }
+        .internacional { border-color: #1976d2; }
+
+        .etiqueta {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .et-nac { background: #d32f2f; }
+        .et-reg { background: #f57c00; }
+        .et-loc { background: #388e3c; }
+        .et-int { background: #1976d2; }
+
+        .cuadro-noticia h3 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .cuadro-noticia p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .fuente {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+        .fecha-nota {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Pie */
+        .pie {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        /* Adaptable a celulares */
+        @media (max-width: 600px) {
+            .cabecera h1 { font-size: 1.3rem; }
+            .cuadro-noticia { padding: 15px; }
+            body { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <!-- Cabecera -->
+    <div class="cabecera">
+        <h1>📻 RADIOS UNIDAS — Noticias</h1>
+        <p>Información clara, segura y veraz para el Perú y el Mundo</p>
+        <div class="fecha-hoy" id="fechaActual"></div>
+    </div>
+
+    <!-- NOTICIAS — SE ACTUALIZAN AUTOMÁTICAMENTE -->
+    <div id="contenedorNoticias"></div>
+
+    <!-- Pie de página -->
+    <div class="pie">
+        <p>📡 Radios Unidas — Conectando Moquegua, Tacna, Arequipa, Cusco, Ayacucho, Jauja, Puerto Maldonado y todo el Perú</p>
+        <p style="margin-top: 8px; font-weight: bold;">La verdad no tiene dueño, pero tiene que ser dicha con valentía.</p>
+    </div>
+
+</div>
+
+<script>
+// ==============================================
+// BLOQUE DE NOTICIAS — AQUÍ AGREGAS LAS NUEVAS
+// Formato: fecha, categoría, título, contenido
+// ==============================================
+const NOTICIAS = [
+
+    // --- NOTICIA DE HOY ---
+    {
+        fecha: "2026-09-26",
+        categoria: "nacional",
+        titulo: "Radios Unidas presente en la información de todo el país",
+        texto: "Desde cada rincón del Perú, Radios Unidas lleva la información veraz y oportuna. Hoy compartimos el avance de obras en regiones y el compromiso de seguir informando con transparencia y valentía."
+    },
+    {
+        fecha: "2026-09-26",
+        categoria: "regional",
+        titulo: "Arequipa: Obras en provincias avanzan con respaldo ciudadano",
+        texto: "Las ocho provincias de Arequipa reciben atención prioritaria. Radios Unidas acompaña el desarrollo de cada distrito, comunidad y anexo, llevando la voz del pueblo que trabaja y progresa."
+    },
+    {
+        fecha: "2026-09-26",
+        categoria: "local",
+        titulo: "Comunidades locales se organizan por el bien común",
+        texto: "Juntas vecinales y autoridades trabajan unidas. Radios Unidas difunde las iniciativas de nuestra gente: esfuerzo, unidad y esperanza desde cada pueblo."
+    },
+    {
+        fecha: "2026-09-26",
+        categoria: "internacional",
+        titulo: "El mundo mira al Perú: nuestra voz cruza fronteras",
+        texto: "Radios Unidas para el Mundo. La noticia peruana llega a donde están nuestros hermanos en el exterior. Información con identidad, veracidad y orgullo nacional."
+    },
+
+    // --- EJEMPLO DE NOTICIA DE DÍA ANTERIOR ---
+    {
+        fecha: "2026-09-25",
+        categoria: "nacional",
+        titulo: "40 años de Umbral Perú: Un homenaje desde Radios Unidas",
+        texto: "Reconocimiento a Hugo Almanza por cuatro décadas de servicio a la verdad. Sigamos adelante, hasta quemar el último cartucho, con la veracidad que nos caracteriza."
+    }
+
+    // ==============================================
+    // AQUÍ SIGUES AGREGANDO MÁS NOTICIAS ABAJO
+    // ==============================================
+    // {
+    //     fecha: "AAAA-MM-DD",
+    //     categoria: "nacional / regional / local / internacional",
+    //     titulo: "Título de la noticia",
+    //     texto: "Cuerpo de la noticia, siempre mencionando a Radios Unidas..."
+    // },
+
+];
+
+// ==============================================
+// NO TOCAR DESDE AQUÍ — SISTEMA AUTOMÁTICO
+// ==============================================
+
+// Mostrar fecha de hoy
+function formatearFecha(fechaStr) {
+    const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    const d = new Date(fechaStr + "T00:00:00");
+    return d.getDate() + " de " + meses[d.getMonth()] + " de " + d.getFullYear();
+}
+
+const hoy = new Date().toISOString().split('T')[0];
+document.getElementById('fechaActual').textContent = formatearFecha(hoy);
+
+// Filtrar y ordenar noticias
+const contenedor = document.getElementById('contenedorNoticias');
+const noticiasOrdenadas = [...NOTICIAS].sort((a, b) => b.fecha.localeCompare(a.fecha));
+
+noticiasOrdenadas.forEach(nota => {
+    const cat = nota.categoria;
+    const etiquetaTexto = {
+        nacional: "🇵🇹 Nacional",
+        regional: "🏔️ Regional",
+        local: "🏡 Local",
+        internacional: "🌍 Internacional"
+    }[cat];
+
+    const claseEtiqueta = {
+        nacional: "et-nac",
+        regional: "et-reg",
+        local: "et-loc",
+        internacional: "et-int"
+    }[cat];
+
+    const esHoy = nota.fecha === hoy;
+    const etiquetaDestacada = esHoy ? "⭐ HOY — " : "";
+
+    contenedor.innerHTML += `
+        <div class="cuadro-noticia ${cat}">
+            <span class="etiqueta ${claseEtiqueta}">${etiquetaDestacada}${etiquetaTexto}</span>
+            <h3>${nota.titulo}</h3>
+            <p>${nota.texto}</p>
+            <p class="fuente">📻 Fuente: Radios Unidas para el Perú y el Mundo</p>
+            <div class="fecha-nota">📅 ${formatearFecha(nota.fecha)}</div>
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
