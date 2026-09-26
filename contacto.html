@@ -90,6 +90,9 @@
             font-size: 1rem;
         }
 
+        .btn-llamar { background: #0a1647; }
+        .btn-llamar:hover { background: #152275; transform: scale(1.05); }
+
         .btn-whatsapp { background: #25d366; }
         .btn-whatsapp:hover { background: #1da851; transform: scale(1.05); }
 
@@ -98,6 +101,25 @@
 
         .btn-estrellas { background: #ffc107; color: #222; }
         .btn-estrellas:hover { background: #ffb300; transform: scale(1.05); }
+
+        .btn-como-llegar {
+            background: #ea4335;
+            animation: parpadeo 1.5s infinite;
+        }
+        .btn-como-llegar:hover {
+            background: #d33426;
+            transform: scale(1.05);
+            animation: none;
+        }
+
+        @keyframes parpadeo {
+            0%   { opacity: 1; box-shadow: 0 0 5px #ea4335; }
+            50%  { opacity: 0.7; box-shadow: 0 0 20px #ea4335; }
+            100% { opacity: 1; box-shadow: 0 0 5px #ea4335; }
+        }
+
+        .btn-inicio { background: #1a2a7a; }
+        .btn-inicio:hover { background: #2a3aa0; transform: scale(1.05); }
 
         .mapa-contenedor {
             width: 100%;
@@ -128,9 +150,10 @@
         .pie {
             text-align: center;
             margin-top: 30px;
-            padding: 20px;
+            padding: 25px 20px;
             color: #444;
             font-size: 0.9rem;
+            border-top: 2px solid #ccc;
         }
 
         @media (max-width: 600px) {
@@ -150,40 +173,60 @@
         <p>Red de emisoras del Perú · Tu voz, nuestra señal</p>
     </div>
 
-    <!-- 📞 TELÉFONO Y WHATSAPP -->
+    <!-- 📞 TELÉFONO — LLAMADA DIRECTA -->
     <div class="cuadro">
         <h2>📞 Comunicación directa</h2>
         
         <div class="dato">
-            <span class="icono">💬</span>
+            <span class="icono">📞</span>
             <div>
-                <strong>WhatsApp / Celular:</strong><br>
-                <a href="https://wa.me/51930282895" target="_blank">+51 930 282 895</a>
+                <strong>Teléfono / Llamada directa:</strong><br>
+                <a href="tel:+51930282895">+51 930 282 895</a>
             </div>
         </div>
 
-        <div class="dato">
-            <span class="icono">✉️</span>
+        <a href="tel:+51930282895" class="btn btn-llamar">
+            📞 Llamar ahora
+        </a>
+
+        <div class="dato" style="margin-top: 15px;">
+            <span class="icono">💬</span>
             <div>
-                <strong>Correo electrónico:</strong><br>
-                <a href="mailto:gruporadiosunidas@gmail.com">gruporadiosunidas@gmail.com</a>
+                <strong>WhatsApp:</strong><br>
+                <a href="https://wa.me/51930282895" target="_blank">+51 930 282 895</a>
             </div>
         </div>
 
         <a href="https://wa.me/51930282895?text=Hola%20Radios%20Unidas%2C%20les%20escribo%20desde%20su%20página%20web" target="_blank" class="btn btn-whatsapp">
             💬 Escribir por WhatsApp
         </a>
+
+        <div class="dato" style="margin-top: 15px;">
+            <span class="icono">✉️</span>
+            <div>
+                <strong>Correo electrónico:</strong><br>
+                <a href="mailto:gruporadiosunidas@gmail.com">gruporadiosunidas@gmail.com</a>
+            </div>
+        </div>
     </div>
 
-    <!-- 📍 UBICACIÓN CON IFRAME EXACTO ✅ -->
+    <!-- 📍 UBICACIÓN — MAPA EXACTO DE GOOGLE ✅ -->
     <div class="cuadro">
         <h2>📍 Dónde estamos</h2>
         
         <div class="dato">
             <span class="icono">🏢</span>
             <div>
+                <strong>Nombre:</strong><br>
+                <strong style="color:#0a1647; font-size:1.1rem;">Radios Unidas — Red de emisoras del Perú</strong>
+            </div>
+        </div>
+
+        <div class="dato">
+            <span class="icono">📍</span>
+            <div>
                 <strong>Dirección:</strong><br>
-                Cusco 00800, Perú — F2MC+7F Cusco
+                Cusco, Perú — F2MC+7F Cusco
             </div>
         </div>
 
@@ -191,26 +234,39 @@
             <span class="icono">🌐</span>
             <div>
                 <strong>Sitio web:</strong><br>
-                <a href="https://radiosunidas.github.io" target="_blank">radiosunidas.github.io</a>
+                <a href="https://radiosunidas.github.io/SANCAMILO" target="_blank">radiosunidas.github.io</a>
             </div>
         </div>
 
-        <!-- ✅ IFRAME DEL MAPA — SE VE DIRECTO SIN CUADRO VACÍO -->
+        <!-- ✅ MAPA EXACTO — TAL CUAL TE LO DIO GOOGLE -->
         <div class="mapa-contenedor">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.764251198683!2d-71.5329999!3d-13.5319444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f9e8bc8bc8bc9%3A0x5c8c8c8c8c8c8c8c!2sRadios%20Unidas%20%7C%20Red%20de%20emisoras%20del%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1758900000000!5m2!1ses!2spe" 
-                allowfullscreen 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.3062380836127!2d-71.98136122492303!3d-13.516788671010803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c9f0dc7b03f1%3A0x3d0cbcec002edbc5!2sRadios%20Unidas%20%7C%20Red%20de%20emisoras%20del%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1790437617329!5m2!1ses!2spe" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
-        
-        <p style="margin-top: 12px; font-size: 0.9rem; color: #666;">
-            <a href="https://maps.app.goo.gl/DxULAyrWDgTLeiFK8" target="_blank" style="color:#4285f4; font-weight:500;">📍 Abrir en Google Maps</a>
+
+        <!-- ✅ BOTÓN PARPADEANTE: CÓMO LLEGAR -->
+        <div style="margin-top: 18px; text-align: center;">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Radios+Unidas+Red+de+emisoras+del+Per%C3%BA,+Cusco,+Per%C3%BA&travelmode=driving" target="_blank" class="btn btn-como-llegar" style="font-size: 1.1rem; padding: 15px 30px;">
+                🚗 ¿Cómo llegar? — Ruta desde tu ubicación
+            </a>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+                Al pinchar se abre la ruta completa: desde tu posición actual hasta Radios Unidas, con la vía más rápida.
+            </p>
+        </div>
+
+        <p style="margin-top: 12px; font-size: 0.9rem;">
+            <a href="https://maps.app.goo.gl/DxULAyrWDgTLeiFK8" target="_blank" style="color:#4285f4; font-weight:500;">📍 Ver en Google Maps</a>
         </p>
     </div>
 
-    <!-- ⭐ BOTÓN DIRECTO A ESCRIBIR RESEÑA — 1 SOLO CLIC ✅ -->
+    <!-- ⭐ RESEÑA DIRECTA -->
     <div class="cuadro">
         <h2>⭐ ¡Califícanos con 5 Estrellas!</h2>
         <p style="margin-bottom: 12px;">Con un solo clic podrás escribir tu comentario y calificarnos. ¡Gracias por ayudarnos a crecer!</p>
@@ -220,12 +276,12 @@
         </a>
         
         <p style="margin-top: 12px; font-size: 0.9rem; color: #666;">
-            ✅ Al pinchar se abre <strong>directamente</strong> el cuadro para poner las estrellas y tu comentario.<br>
+            ✅ Se abre directo el cuadro para poner las estrellas y tu comentario.<br>
             Actualmente tenemos <strong>5.0 ⭐</strong> con 3 reseñas. ¡Gracias por tu apoyo!
         </p>
     </div>
 
-    <!-- ✍️ FORMULARIO DE MENSAJES -->
+    <!-- ✍️ FORMULARIO -->
     <div class="cuadro">
         <h2>✍️ Déjanos tu mensaje</h2>
         <p style="margin-bottom: 15px;">Cuéntanos desde dónde nos escuchas, qué te gusta y cómo podemos mejorar.</p>
@@ -258,8 +314,13 @@
         </form>
     </div>
 
+    <!-- 🔙 PIE DE PÁGINA -->
     <div class="pie">
-        <p>📡 Radios Unidas — Conectando Moquegua, Tacna, Arequipa, Cusco, Ayacucho, Jauja, Puerto Maldonado y todo el Perú</p>
+        <a href="https://radiosunidas.github.io/SANCAMILO" class="btn btn-inicio" style="font-size: 1.05rem; padding: 14px 35px; margin-bottom: 20px;">
+            🔙 Volver al Inicio — Radios Unidas
+        </a>
+        
+        <p style="margin-top: 15px;">📡 Radios Unidas — Conectando Moquegua, Tacna, Arequipa, Cusco, Ayacucho, Jauja, Puerto Maldonado y todo el Perú</p>
         <p style="margin-top: 8px; font-weight: bold;">La verdad no tiene dueño, pero tiene que ser dicha con valentía.</p>
     </div>
 
