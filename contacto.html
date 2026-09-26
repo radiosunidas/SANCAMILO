@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto — Radios Unidas</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        
+        body {
+            background-color: #e0e0e0;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cabecera {
+            background: linear-gradient(135deg, #0a1647, #1a2a7a);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .cabecera h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .cabecera p { opacity: 0.9; font-size: 1rem; }
+
+        .cuadro {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            border-left: 5px solid #1a2a7a;
+            transition: transform 0.3s ease;
+        }
+
+        .cuadro:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .cuadro h2 {
+            color: #0a1647;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dato {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dato:last-child { border-bottom: none; }
+
+        .icono { font-size: 1.4rem; }
+
+        .dato a {
+            color: #1a2a7a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .dato a:hover { text-decoration: underline; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 8px 5px 8px 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-whatsapp { background: #25d366; }
+        .btn-whatsapp:hover { background: #1da851; transform: scale(1.05); }
+
+        .btn-google { background: #4285f4; }
+        .btn-google:hover { background: #3367d6; transform: scale(1.05); }
+
+        .btn-estrellas { background: #ffc107; color: #222; }
+        .btn-estrellas:hover { background: #ffb300; transform: scale(1.05); }
+
+        .mapa-contenedor {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid #ddd;
+            margin-top: 10px;
+        }
+
+        .mapa-contenedor iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .form-grupo { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; color: #333; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        textarea { min-height: 100px; resize: vertical; }
+
+        .pie {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .cabecera h1 { font-size: 1.3rem; }
+            .cuadro { padding: 18px; }
+            .mapa-contenedor { height: 250px; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <div class="cabecera">
+        <h1>📻 CONTACTO — Radios Unidas</h1>
+        <p>Red de emisoras del Perú · Tu voz, nuestra señal</p>
+    </div>
+
+    <!-- 📞 TELÉFONO Y WHATSAPP -->
+    <div class="cuadro">
+        <h2>📞 Comunicación directa</h2>
+        
+        <div class="dato">
+            <span class="icono">💬</span>
+            <div>
+                <strong>WhatsApp / Celular:</strong><br>
+                <a href="https://wa.me/51930282895" target="_blank">+51 930 282 895</a>
+            </div>
+        </div>
+
+        <div class="dato">
+            <span class="icono">✉️</span>
+            <div>
+                <strong>Correo electrónico:</strong><br>
+                <a href="mailto:gruporadiosunidas@gmail.com">gruporadiosunidas@gmail.com</a>
+            </div>
+        </div>
+
+        <a href="https://wa.me/51930282895?text=Hola%20Radios%20Unidas%2C%20les%20escribo%20desde%20su%20página%20web" target="_blank" class="btn btn-whatsapp">
+            💬 Escribir por WhatsApp
+        </a>
+    </div>
+
+    <!-- 📍 DIRECCIÓN Y MAPA EXACTO -->
+    <div class="cuadro">
+        <h2>📍 Dónde estamos</h2>
+        
+        <div class="dato">
+            <span class="icono">🏢</span>
+            <div>
+                <strong>Dirección:</strong><br>
+                Cusco 00800, Perú — F2MC+7F Cusco
+            </div>
+        </div>
+
+        <div class="dato">
+            <span class="icono">🌐</span>
+            <div>
+                <strong>Sitio web:</strong><br>
+                <a href="https://radiosunidas.github.io" target="_blank">radiosunidas.github.io</a>
+            </div>
+        </div>
+
+        <div class="mapa-contenedor">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.764251198683!2d-71.5329999!3d-13.5319444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f9e8bc8bc8bc9%3A0x5c8c8c8c8c8c8c8c!2sRadios%20Unidas%20%7C%20Red%20de%20emisoras%20del%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1758900000000!5m2!1ses!2spe" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #666;">
+            <a href="https://maps.app.goo.gl/DxULAyrWDgTLeiFK8" target="_blank" style="color:#4285f4; font-weight:500;">📍 Abrir en Google Maps — Dirección exacta</a>
+        </p>
+    </div>
+
+    <!-- ⭐ CALIFICAR CON 5 ESTRELLAS → ENLACE EXACTO -->
+    <div class="cuadro">
+        <h2>⭐ ¡Califícanos con 5 Estrellas!</h2>
+        <p style="margin-bottom: 12px;">¿Cómo fue tu experiencia con Radios Unidas? Tu comentario nos ayuda a crecer y llegar a más personas en todo el Perú y el mundo.</p>
+        
+        <a href="https://maps.app.goo.gl/DxULAyrWDgTLeiFK8" target="_blank" class="btn btn-estrellas">
+            ⭐⭐⭐⭐⭐ Escribir reseña en Google
+        </a>
+        
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Actualmente tenemos <strong>5.0 ⭐</strong> con 3 reseñas. ¡Gracias por tu apoyo y confianza!</p>
+    </div>
+
+    <!-- ✍️ FORMULARIO → LLEGA A TU CORREO -->
+    <div class="cuadro">
+        <h2>✍️ Déjanos tu mensaje</h2>
+        <p style="margin-bottom: 15px;">Cuéntanos desde dónde nos escuchas, qué te gusta y cómo podemos mejorar.</p>
+        
+        <form action="https://formsubmit.co/gruporadiosunidas@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde Radios Unidas">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <div class="form-grupo">
+                <label for="nombre">Tu nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Escribe tu nombre">
+            </div>
+
+            <div class="form-grupo">
+                <label for="ciudad">Ciudad / Región desde donde nos escuchas</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ejemplo: Cusco, Arequipa, Lima...">
+            </div>
+
+            <div class="form-grupo">
+                <label for="contacto">Tu correo o WhatsApp (opcional)</label>
+                <input type="text" id="contacto" name="contacto" placeholder="Para responderte directamente">
+            </div>
+
+            <div class="form-grupo">
+                <label for="comentario">Tu mensaje</label>
+                <textarea id="comentario" name="comentario" required placeholder="Escribe aquí lo que quieres compartir con Radios Unidas..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-google">📤 Enviar mensaje</button>
+        </form>
+    </div>
+
+    <div class="pie">
+        <p>📡 Radios Unidas — Conectando Moquegua, Tacna, Arequipa, Cusco, Ayacucho, Jauja, Puerto Maldonado y todo el Perú</p>
+        <p style="margin-top: 8px; font-weight: bold;">La verdad no tiene dueño, pero tiene que ser dicha con valentía.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
